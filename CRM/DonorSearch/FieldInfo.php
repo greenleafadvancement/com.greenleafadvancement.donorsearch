@@ -48,6 +48,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 5,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 1,
       ),
       'Overall' => array(
         'name' => 'overall',
@@ -56,6 +57,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Float',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 2,
       ),
       'LargestGiftLow' => array(
         'name' => 'largest_gift_low',
@@ -64,6 +66,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 4,
       ),
       'LargestGiftHigh' => array(
         'name' => 'largest_gift_high',
@@ -72,6 +75,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 3,
       ),
       'CapacityRange' => array(
         'name' => 'capacity_range',
@@ -79,6 +83,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 35,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 5,
       ),
       'RealEstateEst' => array(
         'name' => 'real_estate_est',
@@ -87,12 +92,14 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 8,
       ),
       'profile_link' => array(
         'name' => 'profile_link',
         'label' => ts('Profile', array('domain' => 'org.civicrm.donorsearch')),
         'data_type' => 'Link',
         'html_type' => 'Link',
+        'weight' => 6,
       ),
       'submit_time' => array(
         'name' => 'submit_time',
@@ -102,6 +109,7 @@ class CRM_DonorSearch_FieldInfo {
         'date_format' => 'yy-mm-dd',
         'time_format' => 2,
         'is_search_range' => 1,
+        'weight' => 7,
       ),
       'RealEstateCount' => array(
         'name' => 'real_estate_count',
@@ -109,6 +117,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Int',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 9,
       ),
       'LikelyMatchesCount' => array(
         'name' => 'likely_matches_count',
@@ -116,6 +125,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Int',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 11,
       ),
       'LikelyMatchesTotal' => array(
         'name' => 'real_estate_total',
@@ -124,6 +134,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 10,
       ),
       'FndBoard' => array(
         'name' => 'fnd_board',
@@ -131,6 +142,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 13,
       ),
       'GSBoard' => array(
         'name' => 'gs_board',
@@ -138,6 +150,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 14,
       ),
       'PoliticalLikelyCount' => array(
         'name' => 'political_likely_count',
@@ -145,6 +158,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Int',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 20,
       ),
       'PoliticalLikelyTotal' => array(
         'name' => 'political_likely_total',
@@ -153,6 +167,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 15,
       ),
       'BusinessRevenues' => array(
         'name' => 'business_revenues',
@@ -161,6 +176,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 16,
       ),
       'SECStockValue' => array(
         'name' => 'sec_stock_value',
@@ -169,6 +185,7 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'Money',
         'html_type' => 'Text',
         'is_search_range' => 1,
+        'weight' => 17,
       ),
       'SECInsider' => array(
         'name' => 'sec_stock_insider',
@@ -176,6 +193,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 18,
       ),
       'MarketGuide' => array(
         'name' => 'mkt_guide',
@@ -183,6 +201,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 26,
       ),
       'IRS990PF' => array(
         'name' => 'IRS990PF',
@@ -190,6 +209,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 19,
       ),
       'RealEstateTrust' => array(
         'name' => 'real_est_trust',
@@ -197,6 +217,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 35,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 21,
       ),
       'BusinessAffiliation' => array(
         'name' => 'business_affiliation',
@@ -204,6 +225,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 22,
       ),
       'Pilot' => array(
         'name' => 'pilot',
@@ -211,6 +233,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 23,
       ),
       'AirplaneOwner' => array(
         'name' => 'airplane_owner',
@@ -218,6 +241,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 24,
       ),
       'Boat' => array(
         'name' => 'boat',
@@ -225,6 +249,7 @@ class CRM_DonorSearch_FieldInfo {
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
+        'weight' => 25,
       ),
     );
   }
