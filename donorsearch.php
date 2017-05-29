@@ -230,9 +230,10 @@ function donorSearch_civicrm_check(&$messages) {
   $apiKey = Civi::settings()->get('ds_api_key');
 
   if (empty($apiKey)) {
+    $apiKeyUrl = CRM_Utils_System::url('civicrm/ds/register', 'reset=1');
     $messages[] = new CRM_Utils_Check_Message(
       'donorsearch_noapikey',
-      ts("The Donor Search extension is enabled, but the Donor Search API key is missing.  Navigate to Administeer » System Settings » Register Donor Search API Key to register a key."),
+      ts("The Donor Search extension is enabled, but the Donor Search API key is missing.  Navigate to Administeer » System Settings » <a href='%1'>Register Donor Search API Key</a> to register a key.", array(1 => $apiKeyUrl)),
       ts('No Donor Search API Key'),
       \Psr\Log\LogLevel::WARNING,
       'fa-dollar'
