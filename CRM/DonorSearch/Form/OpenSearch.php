@@ -160,7 +160,8 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
     // execute DS send API with provided search parameters
     list($isError, $response) = CRM_DonorSearch_API::singleton($searchFieldValues)->send();
     // if there's any error redirect to integrated-search page
-    if ($isError) {
+    // FIXME: The "pre" is probably the wrong thing to look for, we probably want to look for XML tags.  We need to see a successful return first.
+    if (strpos($response, "<pre>") === FALSE || $isError) {
       $url = CRM_Utils_System::url('civicrm/ds/view', 'reset=1');
     }
     // on successful submission populate the custom fields with desired DS data and redirect to DS profile
