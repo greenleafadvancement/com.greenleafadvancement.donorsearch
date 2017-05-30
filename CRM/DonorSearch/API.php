@@ -150,7 +150,7 @@ class CRM_DonorSearch_API {
         break;
 
       case 'API key already created':
-        CRM_Core_Session::setStatus(ts("API Key already generated"), ts('Warning'));
+        CRM_Core_Session::setStatus(ts("That username and password has already been used to generate an API key on another system. If you believe this is an error, please contact Donor Search support at info@donorsearch.net."), ts('Warning'));
         break;
 
       case 'Error':
