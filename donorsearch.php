@@ -113,15 +113,13 @@ function donorsearch_civicrm_pageRun(&$page) {
         ',
       ));
     }
-    else {
-      CRM_Core_Region::instance('custom-data-view-DS_details')->add(array(
-        'markup' => '
-          <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)) . '">
-            <span>' . ts('New Donor Search', array('domain' => 'org.civicrm.donorsearch')) . '</span>
-          </a>
-        ',
-      ));
-    }
+    CRM_Core_Region::instance('custom-data-view-DS_details')->add(array(
+      'markup' => '
+        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)) . '">
+          <span>' . ts('New Donor Search', array('domain' => 'org.civicrm.donorsearch')) . '</span>
+        </a>
+      ',
+    ));
   }
 }
 
