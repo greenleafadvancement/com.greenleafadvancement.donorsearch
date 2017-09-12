@@ -134,7 +134,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
     $names = array('ds_register_api', 'ds_view', 'ds_new');
 
     foreach ($names as $name) {
-      if ($name == 'delete') {
+      if ($action == 'delete') {
         $id = civicrm_api3('Navigation', 'getvalue', array(
           'return' => "id",
           'name' => $name,
