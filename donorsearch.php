@@ -101,11 +101,25 @@ function donorsearch_civicrm_permission(&$permissions) {
  * @inheritDoc
  */
 function donorsearch_civicrm_pageRun(&$page) {
+  // Inject custom buttons at the top of the Donor Search custom fields
   if ($page->getVar('_name') == 'CRM_Contact_Page_View_CustomData') {
     $contactId = $page->getVar('_contactId');
+    $groupId = $page->getVar('_groupId');
+    $donorSearchGroupId = civicrm_api3('CustomGroup', 'getvalue', array(
+      'return' => "id",
+      'name' => "DS_details",
+    ));
+    if ($groupId != $donorSearchGroupId) {
+      return;
+    }
     $count = civicrm_api3('DonorSearch', 'getcount', array('contact_id' => $contactId));
+    CRM_Core_Region::instance('page-header')->add(array(
+      'markup' => '
+            See the <a target="_blank" href="https://docs.civicrm.org">Donor Search CiviCRM documentation</a> for details.<br />
+        ',
+    ));
     if ($count) {
-      CRM_Core_Region::instance('custom-data-view-DS_details')->add(array(
+      CRM_Core_Region::instance('page-header')->add(array(
         'markup' => '
           <a class="no-popup button" target="_blank" href="' . CRM_Utils_System::url('civicrm/view/ds-profile', "cid=" . $contactId) . '">
             <span>' . ts('View Donor Search Profile', array('domain' => 'org.civicrm.donorsearch')) . '</span>
@@ -113,7 +127,7 @@ function donorsearch_civicrm_pageRun(&$page) {
         ',
       ));
     }
-    CRM_Core_Region::instance('custom-data-view-DS_details')->add(array(
+    CRM_Core_Region::instance('page-header')->add(array(
       'markup' => '
         <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)) . '">
           <span>' . ts('New Donor Search', array('domain' => 'org.civicrm.donorsearch')) . '</span>
