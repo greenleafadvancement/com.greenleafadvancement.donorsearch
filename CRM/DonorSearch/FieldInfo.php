@@ -49,6 +49,8 @@ class CRM_DonorSearch_FieldInfo {
         'data_type' => 'String',
         'html_type' => 'Text',
         'weight' => 1,
+        'help_pre' => 'pre help',
+        'help_post' => 'post help',
       ),
       'Overall' => array(
         'name' => 'overall',
