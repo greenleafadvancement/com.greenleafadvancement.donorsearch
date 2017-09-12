@@ -267,6 +267,7 @@ class CRM_DonorSearch_FieldInfo {
         ));
         $xmlToCustomFieldMap[$xmlName] = 'custom_' . $customFieldID;
       }
+      $xmlName = NULL;
       CRM_Core_BAO_Cache::setItem($xmlToCustomFieldMap, 'donor search', 'xml to custom field map');
     }
     return CRM_Utils_Array::value($xmlName, $xmlToCustomFieldMap, $xmlToCustomFieldMap);
