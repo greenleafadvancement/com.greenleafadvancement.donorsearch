@@ -126,6 +126,14 @@ function donorsearch_civicrm_pageRun(&$page) {
           </a>
         ',
       ));
+      CRM_Core_Region::instance('page-header')->add(array(
+        'markup' => '
+        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/view', array(
+          'reset' => 1, 'cid' => $contactId)) . '">
+          <span>' . ts('Past Donor Searches', array('domain' => 'org.civicrm.donorsearch')) . '</span>
+        </a>
+      ',
+      ));
     }
     CRM_Core_Region::instance('page-header')->add(array(
       'markup' => '

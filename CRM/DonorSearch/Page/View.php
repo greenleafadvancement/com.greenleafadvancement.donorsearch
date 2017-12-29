@@ -16,7 +16,7 @@ class CRM_DonorSearch_Page_View extends CRM_Core_Page {
       '',
     );
     $this->assign('headers', $headers);
-
+    $dao->contact_id = CRM_Utils_Request::retrieve('cid', 'Positive', $this, FALSE);
     $donorSearches = array();
     $dao->find();
     while ($dao->fetch()) {
