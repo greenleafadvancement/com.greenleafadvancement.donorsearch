@@ -167,6 +167,7 @@ function donorSearch_civicrm_summaryActions(&$menu, $contactId) {
           'href' => CRM_Utils_System::url('civicrm/view/ds-profile', 'reset=1'),
           'weight' => 100,
           'class' => 'no-popup',
+          'extra' => ' target="_blank"',
           'permissions' => array('access DonorSearch'),
         ),
       );
