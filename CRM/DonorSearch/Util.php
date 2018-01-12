@@ -140,7 +140,7 @@ class CRM_DonorSearch_Util {
       'name' => 'DS_details',
       'return' => 'id',
     ));
-    return CRM_Utils_System::url('civicrm/contact/view/cd', sprintf('reset=1&gid=%d&cid=%d&selectedChild=custom_%d', $customGroupID, $contactID, $customGroupID));
+    return CRM_Utils_System::url('civicrm/contact/view', sprintf('reset=1&gid=%d&cid=%d&selectedChild=custom_%d', $customGroupID, $contactID, $customGroupID));
   }
 
 }
