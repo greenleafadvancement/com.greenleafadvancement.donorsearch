@@ -44,7 +44,7 @@ class CRM_DonorSearch_FieldInfo {
     return array(
       'DS_Rating' => array(
         'name' => 'ds_rating',
-        'label' => ts('DS Rating', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('DS Rating', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 5,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -54,7 +54,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'Overall' => array(
         'name' => 'overall',
-        'label' => ts('Overall', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Overall', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 5,
         'data_type' => 'Float',
         'html_type' => 'Text',
@@ -63,7 +63,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'LargestGiftLow' => array(
         'name' => 'largest_gift_low',
-        'label' => ts('Largest gift found lower range', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Largest gift found lower range', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -72,7 +72,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'LargestGiftHigh' => array(
         'name' => 'largest_gift_high',
-        'label' => ts('Largest gift found higher range', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Largest gift found higher range', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -81,7 +81,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'CapacityRange' => array(
         'name' => 'capacity_range',
-        'label' => ts('Wealth capacity range', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Wealth capacity range', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 35,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -89,7 +89,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'RealEstateEst' => array(
         'name' => 'real_estate_est',
-        'label' => ts('Real estate estimate', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Real estate estimate', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -98,14 +98,14 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'profile_link' => array(
         'name' => 'profile_link',
-        'label' => ts('Profile', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Profile', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'data_type' => 'Link',
         'html_type' => 'Link',
         'weight' => 6,
       ),
       'submit_time' => array(
         'name' => 'submit_time',
-        'label' => ts('Submit time', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Submit time', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'data_type' => 'Date',
         'html_type' => 'Select Date',
         'date_format' => 'yy-mm-dd',
@@ -115,7 +115,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'RealEstateCount' => array(
         'name' => 'real_estate_count',
-        'label' => ts('Real estate count', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Real estate count', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'data_type' => 'Int',
         'html_type' => 'Text',
         'is_search_range' => 1,
@@ -123,7 +123,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'LikelyMatchesCount' => array(
         'name' => 'likely_matches_count',
-        'label' => ts('Count of likely matches', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Count of likely matches', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'data_type' => 'Int',
         'html_type' => 'Text',
         'is_search_range' => 1,
@@ -131,7 +131,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'LikelyMatchesTotal' => array(
         'name' => 'real_estate_total',
-        'label' => ts('Total of likely matches', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Total of likely matches', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -140,7 +140,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'FndBoard' => array(
         'name' => 'fnd_board',
-        'label' => ts('Foundation board', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Foundation board', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -148,7 +148,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'GSBoard' => array(
         'name' => 'gs_board',
-        'label' => ts('Grant seeking board', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Grant seeking board', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -156,7 +156,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'PoliticalLikelyCount' => array(
         'name' => 'political_likely_count',
-        'label' => ts('Political count', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Political count', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'data_type' => 'Int',
         'html_type' => 'Text',
         'is_search_range' => 1,
@@ -164,7 +164,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'PoliticalLikelyTotal' => array(
         'name' => 'political_likely_total',
-        'label' => ts('Political total', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Political total', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -173,7 +173,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'BusinessRevenues' => array(
         'name' => 'business_revenues',
-        'label' => ts('Business revenues', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Business revenues', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -182,7 +182,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'SECStockValue' => array(
         'name' => 'sec_stock_value',
-        'label' => ts('SEC stock value', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('SEC stock value', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 20,
         'data_type' => 'Money',
         'html_type' => 'Text',
@@ -191,7 +191,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'SECInsider' => array(
         'name' => 'sec_stock_insider',
-        'label' => ts('SEC stock or insider', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('SEC stock or insider', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -199,7 +199,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'MarketGuide' => array(
         'name' => 'mkt_guide',
-        'label' => ts('Market guide', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Market guide', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -207,7 +207,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'IRS990PF' => array(
         'name' => 'IRS990PF',
-        'label' => ts('IRS 990PF', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('IRS 990PF', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -215,7 +215,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'RealEstateTrust' => array(
         'name' => 'real_est_trust',
-        'label' => ts('Real estate trust', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Real estate trust', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 35,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -223,7 +223,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'BusinessAffiliation' => array(
         'name' => 'business_affiliation',
-        'label' => ts('Business affiliation', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Business affiliation', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -231,7 +231,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'Pilot' => array(
         'name' => 'pilot',
-        'label' => ts('FAA Pilot license', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('FAA Pilot license', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -239,7 +239,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'AirplaneOwner' => array(
         'name' => 'airplane_owner',
-        'label' => ts('Airplane Owner', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Airplane Owner', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',
@@ -247,7 +247,7 @@ class CRM_DonorSearch_FieldInfo {
       ),
       'Boat' => array(
         'name' => 'boat',
-        'label' => ts('Boat', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('Boat', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
         'data_type' => 'String',
         'html_type' => 'Text',

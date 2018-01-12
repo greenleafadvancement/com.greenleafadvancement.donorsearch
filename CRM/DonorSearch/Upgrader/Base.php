@@ -39,7 +39,7 @@ class CRM_DonorSearch_Upgrader_Base {
     if (! self::$instance) {
       // FIXME auto-generate
       self::$instance = new CRM_DonorSearch_Upgrader(
-        'org.civicrm.donorsearch',
+        'com.greenleafadvancement.donorsearch',
         realpath(__DIR__ .'/../../../')
       );
     }

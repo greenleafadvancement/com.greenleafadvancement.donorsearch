@@ -190,7 +190,7 @@ function _donorsearch_civix_civicrm_managed(&$entities) {
     $es = include $file;
     foreach ($es as $e) {
       if (empty($e['module'])) {
-        $e['module'] = 'org.civicrm.donorsearch';
+        $e['module'] = 'com.greenleafadvancement.donorsearch';
       }
       $entities[] = $e;
       if (empty($e['params']['version'])) {
@@ -222,7 +222,7 @@ function _donorsearch_civix_civicrm_caseTypes(&$caseTypes) {
       // throw new CRM_Core_Exception($errorMessage);
     }
     $caseTypes[$name] = array(
-      'module' => 'org.civicrm.donorsearch',
+      'module' => 'com.greenleafadvancement.donorsearch',
       'name' => $name,
       'file' => $file,
     );
@@ -248,7 +248,7 @@ function _donorsearch_civix_civicrm_angularModules(&$angularModules) {
     $name = preg_replace(':\.ang\.php$:', '', basename($file));
     $module = include $file;
     if (empty($module['ext'])) {
-      $module['ext'] = 'org.civicrm.donorsearch';
+      $module['ext'] = 'com.greenleafadvancement.donorsearch';
     }
     $angularModules[$name] = $module;
   }

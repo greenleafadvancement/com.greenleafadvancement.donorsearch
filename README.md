@@ -1,1 +1,1 @@
-# org.civicrm.donorsearch
+# com.greenleafadvancement.donorsearch

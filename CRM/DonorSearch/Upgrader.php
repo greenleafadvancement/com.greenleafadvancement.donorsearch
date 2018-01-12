@@ -13,7 +13,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
    */
   public function install() {
     civicrm_api3('Navigation', 'create', array(
-      'label' => ts('Register Donor Search API Key', array('domain' => 'org.civicrm.donorsearch')),
+      'label' => ts('Register Donor Search API Key', array('domain' => 'com.greenleafadvancement.donorsearch')),
       'name' => 'ds_register_api',
       'url' => 'civicrm/ds/register?reset=1',
       'domain_id' => CRM_Core_Config::domainID(),
@@ -34,12 +34,12 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
     ));
     $params = array(
       array(
-        'label' => ts('View Donor Search', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('View Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'name' => 'ds_view',
         'url' => 'civicrm/ds/view?reset=1',
       ),
       array(
-        'label' => ts('New Donor Search', array('domain' => 'org.civicrm.donorsearch')),
+        'label' => ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'name' => 'ds_new',
         'url' => 'civicrm/ds/open-search?reset=1',
       ),
@@ -59,7 +59,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
     }
 
     $customGroup = civicrm_api3('custom_group', 'create', array(
-      'title' => ts('Donor Search', array('domain' => 'org.civicrm.donorsearch')),
+      'title' => ts('Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
       'name' => 'DS_details',
       'extends' => 'Contact',
       'domain_id' => CRM_Core_Config::domainID(),

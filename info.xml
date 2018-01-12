@@ -1,15 +1,16 @@
 <?xml version="1.0"?>
-<extension key="org.civicrm.donorsearch" type="module">
+<extension key="com.greenleafadvancement.donorsearch" type="module">
   <file>donorsearch</file>
   <name>Donor Search</name>
   <description>Perform wealth lookups of CiviCRM contacts using the DonorSearch Wealth Research Service.</description>
   <license>AGPL-3.0</license>
   <maintainer>
-    <author>deb.monish</author>
-    <email>monish.deb@webaccessglobal.com</email>
+    <author>Greenleaf Advancement</author>
+    <email>guyiac@greenleafadvancement.com</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">https://github.com/civicrm/org.civicrm.donorsearch</url>
+    <url desc="Main Extension Page">https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch</url>
+    <url desc="Documentation">https://docs.civicrm.org/donorsearch/en/latest</url>
     <url desc="Register">http://donorsearch.net</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>

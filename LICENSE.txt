@@ -1,4 +1,4 @@
-Package: org.civicrm.donorsearch
+Package: com.greenleafadvancement.donorsearch
 Copyright (C) 2016, deb.monish <monish.deb@webaccessglobal.com>
 Licensed under the GNU Affero Public License 3.0 (below).
 

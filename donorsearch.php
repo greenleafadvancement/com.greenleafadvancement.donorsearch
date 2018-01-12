@@ -94,7 +94,7 @@ function changeDSNavigation($action) {
  * @return void
  */
 function donorsearch_civicrm_permission(&$permissions) {
-  $permissions += array('access DonorSearch' => ts('Access DonorSearch', array('domain' => 'org.civicrm.donorsearch')));
+  $permissions += array('access DonorSearch' => ts('Access DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')));
 }
 
 /**
@@ -122,7 +122,7 @@ function donorsearch_civicrm_pageRun(&$page) {
       CRM_Core_Region::instance('page-header')->add(array(
         'markup' => '
           <a class="no-popup button" target="_blank" href="' . CRM_Utils_System::url('civicrm/view/ds-profile', "cid=" . $contactId) . '">
-            <span>' . ts('View Donor Search Profile', array('domain' => 'org.civicrm.donorsearch')) . '</span>
+            <span>' . ts('View Donor Search Profile', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
           </a>
         ',
       ));
@@ -130,7 +130,7 @@ function donorsearch_civicrm_pageRun(&$page) {
         'markup' => '
         <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/view', array(
           'reset' => 1, 'cid' => $contactId)) . '">
-          <span>' . ts('Past Donor Searches', array('domain' => 'org.civicrm.donorsearch')) . '</span>
+          <span>' . ts('Past Donor Searches', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
         </a>
       ',
       ));
@@ -138,7 +138,7 @@ function donorsearch_civicrm_pageRun(&$page) {
     CRM_Core_Region::instance('page-header')->add(array(
       'markup' => '
         <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)) . '">
-          <span>' . ts('New Donor Search', array('domain' => 'org.civicrm.donorsearch')) . '</span>
+          <span>' . ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
         </a>
       ',
     ));
@@ -169,7 +169,7 @@ function donorSearch_civicrm_summaryActions(&$menu, $contactId) {
     if ($count) {
       $menu += array(
         'view-ds-profile' => array(
-          'title' => ts('Donor Search Profile', array('domain' => 'org.civicrm.donorsearch')),
+          'title' => ts('Donor Search Profile', array('domain' => 'com.greenleafadvancement.donorsearch')),
           'ref' => 'ds-profile',
           'key' => 'view-ds-profile',
           'href' => CRM_Utils_System::url('civicrm/view/ds-profile', 'reset=1'),
@@ -183,7 +183,7 @@ function donorSearch_civicrm_summaryActions(&$menu, $contactId) {
     else {
       $menu += array(
         'add-ds-profile' => array(
-          'title' => ts('New Donor Search', array('domain' => 'org.civicrm.donorsearch')),
+          'title' => ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
           'ref' => 'ds-profile',
           'key' => 'add-ds-profile',
           'href' => CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)),
@@ -305,7 +305,7 @@ function donorsearch_civicrm_preProcess($formName, &$form) {
  *
 function donorsearch_civicrm_navigationMenu(&$menu) {
   _donorsearch_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => ts('The Page', array('domain' => 'org.civicrm.donorsearch')),
+    'label' => ts('The Page', array('domain' => 'com.greenleafadvancement.donorsearch')),
     'name' => 'the_page',
     'url' => 'civicrm/the-page',
     'permission' => 'access CiviReport,access CiviContribute',
