@@ -69,7 +69,7 @@ class CRM_DonorSearch_Util {
 
     // show status and redirect to 'Donor Integrated Search' page
     CRM_Core_Session::setStatus(ts("DS Record updated for Contact ID - " . $previousDSparams['id']), ts('Success'), 'success');
-    CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm/ds/integrated-search', 'reset=1&id=' . $dao->id));
+    CRM_Utils_System::redirect(self::getDonorSearchDetailsLink($dao->contact_id));
   }
 
   /**
