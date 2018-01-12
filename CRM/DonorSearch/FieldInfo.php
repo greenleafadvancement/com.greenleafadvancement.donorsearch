@@ -197,14 +197,6 @@ class CRM_DonorSearch_FieldInfo {
         'html_type' => 'Text',
         'weight' => 18,
       ),
-      'MarketGuide' => array(
-        'name' => 'mkt_guide',
-        'label' => ts('Market guide', array('domain' => 'com.greenleafadvancement.donorsearch')),
-        'text_length' => 1,
-        'data_type' => 'String',
-        'html_type' => 'Text',
-        'weight' => 26,
-      ),
       'IRS990PF' => array(
         'name' => 'IRS990PF',
         'label' => ts('IRS 990PF', array('domain' => 'com.greenleafadvancement.donorsearch')),
