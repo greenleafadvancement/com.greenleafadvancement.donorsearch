@@ -101,6 +101,10 @@ function donorsearch_civicrm_permission(&$permissions) {
  * @inheritDoc
  */
 function donorsearch_civicrm_pageRun(&$page) {
+  // Inject JS to make the Action Summary Link open in a new window.
+  if ($page->getVar('_name') == 'CRM_Contact_Page_View_Summary') {
+    CRM_Core_Resources::singleton()->addScriptFile('com.greenleafadvancement.donorsearch', 'js/DonorSearchNewWindow.js');
+  }
   // Inject custom buttons at the top of the Donor Search custom fields
   if ($page->getVar('_name') == 'CRM_Contact_Page_View_CustomData') {
     $contactId = $page->getVar('_contactId');
@@ -254,7 +258,7 @@ function donorsearch_civicrm_alterAPIPermissions($entity, $action, $params, &$pe
 /**
  * @inheritDoc
  */
-function donorSearch_civicrm_check(&$messages) {
+function donorsearch_civicrm_check(&$messages) {
   $apiKey = Civi::settings()->get('ds_api_key');
 
   if (empty($apiKey)) {
