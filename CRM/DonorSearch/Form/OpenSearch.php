@@ -106,6 +106,17 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
         foreach (CRM_DonorSearch_FieldInfo::getBasicSearchFields() as $name => $field) {
           $defaults[$name] = CRM_Utils_Array::value($field, $contact['values'][0]);
         }
+        // Get the Home address if one exists; primary address (which is already populated) is fine otherwise.
+        $homeAddress = civicrm_api3('Address', 'get', array(
+          'sequential' => 1,
+          'contact_id' => $this->_cid,
+          'location_type_id' => "Home",
+        ));
+        if ($homeAddress['count']) {
+          foreach (CRM_DonorSearch_FieldInfo::getBasicSearchFields() as $name => $field) {
+            $defaults[$name] = CRM_Utils_Array::value($field, $homeAddress['values'][0]);
+          }
+        }
       }
     }
 
