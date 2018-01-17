@@ -33,11 +33,11 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
       'has_separator' => 1,
     ));
     $params = array(
-      array(
+      /* array(
         'label' => ts('View Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'name' => 'ds_view',
         'url' => 'civicrm/ds/view?reset=1',
-      ),
+      ),*/
       array(
         'label' => ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'name' => 'ds_new',
@@ -66,7 +66,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
       'style' => 'Tab',
       'is_active' => 1,
       'collapse_adv_display' => 0,
-      'collapse_display' => 0
+      'collapse_display' => 0,
     ));
 
     foreach (CRM_DonorSearch_FieldInfo::getAttributes() as $param) {
