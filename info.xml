@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <extension key="com.greenleafadvancement.donorsearch" type="module">
   <file>donorsearch</file>
-  <name>Donor Search</name>
-  <description>Perform wealth lookups of CiviCRM contacts using the DonorSearch Wealth Research Service.</description>
+  <name>Donor Search Integration</name>
+  <description>Perform wealth lookups of CiviCRM contacts using the DonorSearch Prospect Research Service.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>Greenleaf Advancement</author>
