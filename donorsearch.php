@@ -124,7 +124,7 @@ function donorsearch_civicrm_pageRun(&$page) {
     $count = $result['count'];
     CRM_Core_Region::instance('page-header')->add(array(
       'markup' => '
-            See the <a target="_blank" href="https://docs.civicrm.org">Donor Search CiviCRM documentation</a> for details.<br />
+            See the <a target="_blank" href="https://docs.civicrm.org/donorsearch/en/latest">Donor Search CiviCRM documentation</a> for details.<br /><br />
         ',
     ));
     if ($count) {
@@ -141,7 +141,7 @@ function donorsearch_civicrm_pageRun(&$page) {
         <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/update-record', array(
           'reset' => 1,
           'id' => $currentSearch)) . '">
-          <span>' . ts('Update Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
+          <span>' . ts('Update Donor Search Profile', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
         </a>
       ',
       ));
@@ -149,10 +149,11 @@ function donorsearch_civicrm_pageRun(&$page) {
     CRM_Core_Region::instance('page-header')->add(array(
       'markup' => '
         <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)) . '">
-          <span>' . ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
+          <span>' . ts('New Donor Search Profile', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
         </a>
       ',
     ));
+    CRM_Core_Region::instance('page-header')->add(array('markup' => '<br/><br/>'));
   }
 }
 
