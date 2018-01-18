@@ -245,6 +245,46 @@ class CRM_DonorSearch_FieldInfo {
         'html_type' => 'Text',
         'weight' => 25,
       ),
+      'RFM' => array(
+        'name' => 'rfm',
+        'label' => ts('RFM (Recency, Frequency, Money)', array('domain' => 'com.greenleafadvancement.donorsearch')),
+        'text_length' => 3,
+        'data_type' => 'String',
+        'html_type' => 'Text',
+        'weight' => 26,
+      ),
+      'Assessed' => array(
+        'name' => 'assessed',
+        'label' => ts('Assessed', array('domain' => 'com.greenleafadvancement.donorsearch')),
+        'text_length' => 12,
+        'data_type' => 'String',
+        'html_type' => 'Text',
+        'weight' => 27,
+      ),
+      'Major Gift Likelihood' => array(
+        'name' => 'major_gift_likelihood',
+        'label' => ts('Major Gift Likelihood', array('domain' => 'com.greenleafadvancement.donorsearch')),
+        'text_length' => 3,
+        'data_type' => 'String',
+        'html_type' => 'Text',
+        'weight' => 28,
+      ),
+      'Annual Fund Likelihood' => array(
+        'name' => 'annual_fund_likelihood',
+        'label' => ts('Annual Fund Likelihood', array('domain' => 'com.greenleafadvancement.donorsearch')),
+        'text_length' => 3,
+        'data_type' => 'String',
+        'html_type' => 'Text',
+        'weight' => 29,
+      ),
+      'PGID' => array(
+        'name' => 'pgid',
+        'label' => ts('PGID (Planned Giving Identification)', array('domain' => 'com.greenleafadvancement.donorsearch')),
+        'text_length' => 1,
+        'data_type' => 'String',
+        'html_type' => 'Text',
+        'weight' => 30,
+      ),
     );
   }
 
