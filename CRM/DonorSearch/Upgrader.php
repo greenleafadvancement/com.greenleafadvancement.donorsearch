@@ -131,7 +131,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
    * @throws \CiviCRM_API3_Exception
    */
   public static function changeNavigation($action) {
-    $names = array('ds_register_api', 'ds_view', 'ds_new');
+    $names = array('ds_register_api', 'ds_new');
 
     foreach ($names as $name) {
       if ($action == 'delete') {
