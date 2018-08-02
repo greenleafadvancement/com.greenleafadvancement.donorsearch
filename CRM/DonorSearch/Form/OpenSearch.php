@@ -114,6 +114,10 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
         ));
         if ($homeAddress['count']) {
           foreach (CRM_DonorSearch_FieldInfo::getBasicSearchFields() as $name => $field) {
+            // Do not assign 'id' default value from $homeAddress
+            if ($name == 'id') {
+              continue;
+            }
             $defaults[$name] = CRM_Utils_Array::value($field, $homeAddress['values'][0]);
           }
         }
