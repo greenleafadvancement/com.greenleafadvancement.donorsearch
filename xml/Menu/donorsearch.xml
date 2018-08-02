@@ -24,12 +24,6 @@
     <access_arguments>access DonorSearch</access_arguments>
   </item>
   <item>
-    <path>civicrm/ds/view</path>
-    <page_callback>CRM_DonorSearch_Page_View</page_callback>
-    <title>List of Donor Searches</title>
-    <access_arguments>access DonorSearch</access_arguments>
-  </item>
-  <item>
     <path>civicrm/view/ds-profile</path>
     <page_callback>CRM_DonorSearch_Util::viewProfile</page_callback>
     <access_arguments>access DonorSearch</access_arguments>

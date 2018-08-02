@@ -33,11 +33,6 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
       'has_separator' => 1,
     ));
     $params = array(
-      /* array(
-        'label' => ts('View Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
-        'name' => 'ds_view',
-        'url' => 'civicrm/ds/view?reset=1',
-      ),*/
       array(
         'label' => ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'name' => 'ds_new',
