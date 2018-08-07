@@ -24,6 +24,7 @@
  | see the CiviCRM license FAQ at http://civicrm.org/licensing        |
  +--------------------------------------------------------------------+
  */
+use CRM_DonorSearch_ExtensionUtil as E;
 
 /**
  * Class to send Donor Search API request
@@ -78,57 +79,60 @@ class CRM_DonorSearch_API {
    * Function to make Donor Search send API request
    */
   public function get() {
-    return $this->sendRequest('get');
+    $params = array(
+      'key' => $this->_searchParams['key'],
+      'ClientID' => $this->_searchParams['ClientID'],
+    );
+    return $this->sendRequest($params);
   }
 
   /**
    * Function to make Donor Search send API request
    */
   public function send() {
-    return $this->sendRequest('send');
+    $params = $this->_searchParams;
+    // Add 'store = 1' parameter for getting DS data in return
+    // later used to update contact
+    $params['Store'] = 1;
+    return $this->sendRequest($params, TRUE);
   }
 
   /**
    * Function to make Donor Search getKey API request
    */
   public function getKey() {
-    return $this->sendRequest('getKey');
+    return $this->sendRequest($this->_searchParams, FALSE, 'https://www.donorlead.net/API/getKey.php');
   }
 
   /**
-   * Function used to make Donor Search API request
+   * Make Donor Search API request
    *
-   * @param string $apiName
-   *   Donor Search API names which are get, getKey, send and display
+   * @param array $params
+   *    API parameters to send.
+   * @param bool $doTimestamp
+   *    If TRUE, add a current timestamp in a 'submit_time' array element.
+   * @param string $baseUrl
+   *    The URL for the desired API endpoint.
    *
    * @return array
+   *    An array in the format array($isError, $result):
+   *      $isError result of this::throwDSError() for the result of the API call.
+   *      $result Array of relevant values from the result of the API call.
    */
-  public function sendRequest($apiName) {
-    $searchArgs = array();
-    // for Get API consider only api key and search id as search arguments
-    if ($apiName == 'get') {
-      foreach (array('key', 'id') as $arg) {
-        $searchArgs[] = "$arg=" . $this->_searchParams[$arg];
-      }
-    }
-    else {
-      // for Send API add 'redirect = 1' parameter for getting DS data in return
-      // later used to update contact
-      if ($apiName == 'send') {
-        $this->_searchParams['Redirect'] = 1;
-      }
-      // Format search parameters into url arguments i.e. array(attr => value) to 'attr=value'
-      foreach ($this->_searchParams as $arg => $value) {
-        $searchArgs[] = "$arg=$value";
-      }
-    }
-
+  public function sendRequest(array $params, $doTimestamp = FALSE, $baseUrl = 'https://data.donorlead.net/v2') {
     // send API request with desired search arguments
-    $url = sprintf("https://www.donorlead.net/API/%s.php?%s", $apiName, str_replace(' ', '+', implode('&', $searchArgs)));
-    list($status, $response) = $this->_httpClient->get($url);
+    $url = $baseUrl . '/?' . http_build_query($params);
+    list($status, $responseJSON) = $this->_httpClient->get($url);
+    // In DS api v2, summary details are nested under the 'individual' key in
+    // the result array.
+    // Here we assume that only the 'individual' key is relevant for return.
+    $response = CRM_Utils_Array::value('individual', json_decode($responseJSON, TRUE));
 
+    if ($doTimestamp) {
+      $response['submit_time'] = CRM_Utils_Date::currentDBDate();
+    }
     return array(
-      self::throwDSError($response),
+      self::throwDSError($responseJSON),
       $response,
     );
   }
@@ -136,34 +140,37 @@ class CRM_DonorSearch_API {
   /**
    * Show error/warning if there's anything wrong in $response
    *
-   * @param string $response
+   * @param string $responseJSON
    *   fetched data from DS API
    *
    * @return bool
    *   Found error ? TRUE or FALSE
    */
-  public static function throwDSError($response) {
-    $isError = TRUE;
-    switch (trim($response)) {
-      case 'Key not Valid':
-        CRM_Core_Session::setStatus(ts("Donor Search API Key is not valid"), ts('Error'), 'error');
-        break;
+  public static function throwDSError($responseJSON) {
 
-      case 'API key already created':
-        CRM_Core_Session::setStatus(ts("That username and password has already been used to generate an API key on another system. If you believe this is an error, please contact Donor Search support at info@donorsearch.net."), ts('Warning'));
-        break;
+    $response = json_decode($responseJSON, TRUE);
+    $isError = FALSE;
+    if (!is_array($response)) {
+      switch ($responseJSON) {
+        case 'Missing required data':
+        case 'API key already created':
+        case 'Error':
+          $errorMessage = $responseJSON;
+          break;
 
-      case 'Error':
-        CRM_Core_Session::setStatus(ts("Invalid username and/or password provided OR<br /> API key is already generated"), ts('Error'), 'error');
-        break;
+        default:
+          $errorMessage = E::ts('Unknown error');
+          break;
+      }
+      $isError = TRUE;
+    }
+    elseif ($response['status'] != 200) {
+      $errorMessage = $status['statusMessage'];
+      $isError = TRUE;
+    }
 
-      case 'No records found':
-        CRM_Core_Session::setStatus(ts("No Donor Search record found"), ts('Warning'));
-        break;
-
-      default:
-        $isError = FALSE;
-        break;
+    if (!empty($errorMessage)) {
+      CRM_Core_Session::setStatus(E::ts("Donor Search API error: ") . $errorMessage, E::ts('Error'), 'error');
     }
 
     return $isError;

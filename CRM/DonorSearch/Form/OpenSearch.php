@@ -115,7 +115,11 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
         if ($homeAddress['count']) {
           foreach (CRM_DonorSearch_FieldInfo::getBasicSearchFields() as $name => $field) {
             // Do not assign 'id' default value from $homeAddress
-            if ($name == 'id') {
+            if ($name == 'ClientID') {
+              continue;
+            }
+            // Do not set default value if the field value is empty.
+            if (!$value = CRM_Utils_Array::value($field, $homeAddress['values'][0])) {
               continue;
             }
             $defaults[$name] = CRM_Utils_Array::value($field, $homeAddress['values'][0]);
@@ -123,7 +127,6 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
         }
       }
     }
-
     return $defaults;
   }
 
@@ -131,18 +134,18 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
    * Build the form object.
    */
   public function buildQuickForm() {
-    $this->addEntityRef('id', ts('Search for'), array('create' => TRUE, 'api' => array('params' => array('contact_type' => 'Individual'))), TRUE);
-    $this->add('text', 'dFname', ts('First Name'), array(), TRUE);
-    $this->add('text', 'dMname', ts('Middle Name'));
-    $this->add('text', 'dLname', ts('Last Name'), array(), TRUE);
-    $this->add('text', 'dAddress', ts('Address'), array('maxlength' => 75));
-    $this->add('text', 'dCity', ts('City'), array('maxlength' => 30));
-    $this->add('text', 'dZip', ts('Zip'));
-    $this->add('text', 'dState', ts('State'), array('size' => 4, 'maxlength' => 2), TRUE);
-    $this->add('text', 'dSFname', ts('Spouse First Name'));
-    $this->add('text', 'dSMname', ts('Spouse Middle Name'));
-    $this->add('text', 'dSLname', ts('Spouse Last Name'));
-    $this->add('text', 'dEmployer', ts('Employer'));
+    $this->addEntityRef('ClientID', ts('Search for'), array('create' => TRUE, 'api' => array('params' => array('contact_type' => 'Individual'))), TRUE);
+    $this->add('text', 'firstName', ts('First Name'), array(), TRUE);
+    $this->add('text', 'middleName', ts('Middle Name'));
+    $this->add('text', 'lastName', ts('Last Name'), array(), TRUE);
+    $this->add('text', 'homeStreetAddress', ts('Address'), array('maxlength' => 75));
+    $this->add('text', 'homeCity', ts('City'), array('maxlength' => 30));
+    $this->add('text', 'homeZip', ts('Zip'));
+    $this->add('text', 'homeState', ts('State'), array('size' => 4, 'maxlength' => 2), TRUE);
+    $this->add('text', 'spouseFirst', ts('Spouse First Name'));
+    $this->add('text', 'spouseMiddle', ts('Spouse Middle Name'));
+    $this->add('text', 'spouseLast', ts('Spouse Last Name'));
+    $this->add('text', 'Employer', ts('Employer'));
 
     $this->assign('donorFields', CRM_DonorSearch_FieldInfo::getBasicSearchFields());
 
@@ -167,7 +170,7 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
     if ($this->_id) {
       $dao->id = $this->_id;
     }
-    $dao->contact_id = $values['id'];
+    $dao->contact_id = $values['ClientID'];
     $dao->creator_id = CRM_Core_Session::getLoggedInContactID();
     $dao->search_criteria = serialize($searchFieldValues);
     $dao->save();
@@ -176,8 +179,8 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
     list($isError, $response) = CRM_DonorSearch_API::singleton($searchFieldValues)->send();
 
     // populate the custom fields with desired DS data and redirect to DS profile
-    CRM_DonorSearch_Util::processDSData($response, $searchFieldValues['id']);
-    $url = CRM_DonorSearch_Util::getDonorSearchDetailsLink($searchFieldValues['id']);
+    CRM_DonorSearch_Util::processDSData($response, $searchFieldValues['ClientID']);
+    $url = CRM_DonorSearch_Util::getDonorSearchDetailsLink($searchFieldValues['ClientID']);
     CRM_Utils_System::redirect($url);
   }
 

@@ -25,6 +25,8 @@
  +--------------------------------------------------------------------+
  */
 
+use CRM_DonorSearch_ExtensionUtil as E;
+
 /**
  * Class CRM_DonorSearch_Util
  */
@@ -44,7 +46,7 @@ class CRM_DonorSearch_Util {
     if (empty($previousDSparams['key'])) {
       $apiKey = Civi::settings()->get('ds_api_key');
       if (empty($apiKey)) {
-        CRM_Core_Error::fatal(ts("Donor Search API key missing. Navigate to Administer >> System Settings >> Register Donor Search API Key to register API key"));
+        CRM_Core_Error::fatal(E::ts("Donor Search API key missing. Navigate to Administer >> System Settings >> Register Donor Search API Key to register API key"));
       }
       $previousDSparams['key'] = $apiKey;
     }
@@ -64,53 +66,43 @@ class CRM_DonorSearch_Util {
 
     // update DS data recieved from GET or SEND api above, against contact ID (as search ID)
     if (!$isError) {
-      self::processDSData($response, $previousDSparams['id']);
+      self::processDSData($response, $previousDSparams['ClientID']);
+      CRM_Core_Session::setStatus(E::ts("DS Record updated for Contact ID - " . $previousDSparams['ClientID']), E::ts('Success'), 'success');
     }
 
-    // show status and redirect to 'Donor Integrated Search' page
-    CRM_Core_Session::setStatus(ts("DS Record updated for Contact ID - " . $previousDSparams['id']), ts('Success'), 'success');
+    // redirect to 'Donor Integrated Search' page
     CRM_Utils_System::redirect(self::getDonorSearchDetailsLink($dao->contact_id));
   }
 
   /**
-   * Process Donor Search data in XML format, recieved from SEND or GET api
+   * Process Donor Search data, recieved from SEND or GET api
    *
-   * @param string $response
-   *   donor search data in xml format
+   * @param array $response
+   *   donor search data as keyed array
    * @param int $contactID
    *   contact ID as search ID
    *
    * @return array
    */
   public static function processDSData($response, $contactID) {
-    // encode the raw DS data to html entites which is basically in xml format
-    $response = html_entity_decode(str_replace('<pre>', '', $response));
-    list($xml, $error) = CRM_Utils_XML::parseString($response);
-    // if there is any error while parsing into xml data, abort the process and throw desired error
-    if ($error) {
-      CRM_Core_Error::fatal(ts($error));
-    }
-
     // useful to format api param by placing value against
     // corresponding custom field that represent a DS attribute
-    $xmlToFieldMap = CRM_DonorSearch_FieldInfo::getXMLToCustomFieldNameMap();
-    // convert the xml obj to array
-    $xmlData = CRM_Utils_XML::xmlObjToArray($xml);
+    $responseToFieldMap = CRM_DonorSearch_FieldInfo::getResponseToCustomFieldNameMap();
 
-    $param = array('id' => $contactID);
+    $params = array('id' => $contactID);
     // set value against its desired custom field that represent a DS attribute
-    foreach ($xmlData as $xmlName => $value) {
+    foreach ($response as $key => $value) {
       // as per the documentation there are few attributes which are optional and can be ignored
-      if (!array_key_exists($xmlName, $xmlToFieldMap)) {
+      if (!array_key_exists($key, $responseToFieldMap)) {
         continue;
       }
-      $param[$xmlToFieldMap[$xmlName]] = $value;
+      $params[$responseToFieldMap[$key]] = $value;
     }
 
     // update the contact (id - $contactID) with donor search data
-    civicrm_api3('Contact', 'create', $param);
+    civicrm_api3('Contact', 'create', $params);
 
-    return $xmlData;
+    return $response;
   }
 
   /**
@@ -121,14 +113,14 @@ class CRM_DonorSearch_Util {
     $cid = CRM_Utils_Request::retrieve('cid', 'Positive', $self, TRUE);
     $profileLink = civicrm_api3('Contact', 'getvalue', array(
       'id' => $cid,
-      'return' => CRM_DonorSearch_FieldInfo::getXMLToCustomFieldNameMap('profile_link'),
+      'return' => CRM_DonorSearch_FieldInfo::getResponseToCustomFieldNameMap('ProfileLink'),
     ));
 
     if ($profileLink) {
       CRM_Utils_System::redirect($profileLink);
     }
     else {
-      CRM_Core_Error::fatal(ts('There is no Donor Search profile'));
+      CRM_Core_Error::fatal(E::ts('There is no Donor Search profile'));
     }
   }
 

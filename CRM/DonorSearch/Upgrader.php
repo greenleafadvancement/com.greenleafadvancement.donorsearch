@@ -71,7 +71,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
         'is_view' => 1,
       )));
     }
-    CRM_DonorSearch_FieldInfo::getXMLToCustomFieldNameMap();
+    CRM_DonorSearch_FieldInfo::getResponseToCustomFieldNameMap();
   }
 
   /**

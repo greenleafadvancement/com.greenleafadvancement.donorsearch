@@ -36,7 +36,7 @@
 class CRM_DonorSearch_FieldInfo {
 
   /**
-   * Return array of Donor Search fields where key is the XML name and value got attributes of corrosponding custom field
+   * Return array of Donor Search fields where key is the response key and value contains attributes of corresponding custom field
    *
    * @return array
    */
@@ -79,7 +79,7 @@ class CRM_DonorSearch_FieldInfo {
         'is_search_range' => 1,
         'weight' => 3,
       ),
-      'CapacityRange' => array(
+      'EstimatedCapacity' => array(
         'name' => 'capacity_range',
         'label' => ts('Wealth capacity range', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 35,
@@ -96,7 +96,7 @@ class CRM_DonorSearch_FieldInfo {
         'is_search_range' => 1,
         'weight' => 8,
       ),
-      'profile_link' => array(
+      'ProfileLink' => array(
         'name' => 'profile_link',
         'label' => ts('Profile', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'data_type' => 'Link',
@@ -245,7 +245,7 @@ class CRM_DonorSearch_FieldInfo {
         'html_type' => 'Text',
         'weight' => 25,
       ),
-      'RFM' => array(
+      'RFMTotal' => array(
         'name' => 'rfm',
         'label' => ts('RFM (Recency, Frequency, Money)', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 3,
@@ -261,7 +261,7 @@ class CRM_DonorSearch_FieldInfo {
         'html_type' => 'Text',
         'weight' => 27,
       ),
-      'Major Gift Likelihood' => array(
+      'MajorGiftLikelihood' => array(
         'name' => 'major_gift_likelihood',
         'label' => ts('Major Gift Likelihood', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 3,
@@ -269,7 +269,7 @@ class CRM_DonorSearch_FieldInfo {
         'html_type' => 'Text',
         'weight' => 28,
       ),
-      'Annual Fund Likelihood' => array(
+      'AnnualFundLikelihood' => array(
         'name' => 'annual_fund_likelihood',
         'label' => ts('Annual Fund Likelihood', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 3,
@@ -277,7 +277,7 @@ class CRM_DonorSearch_FieldInfo {
         'html_type' => 'Text',
         'weight' => 29,
       ),
-      'PGID' => array(
+      'PGID_Rating' => array(
         'name' => 'pgid',
         'label' => ts('PGID (Planned Giving Identification)', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 1,
@@ -288,37 +288,37 @@ class CRM_DonorSearch_FieldInfo {
     );
   }
 
-  public static function getXMLToCustomFieldNameMap($xmlName = NULL) {
-    $xmlToCustomFieldMap = CRM_Core_BAO_Cache::getItem('donor search', 'xml to custom field map');
-    if (!$xmlToCustomFieldMap) {
-      $xmlToCustomFieldMap = array();
-      foreach (self::getAttributes() as $xmlName => $fieldInfo) {
+  public static function getResponseToCustomFieldNameMap($key = NULL) {
+    $responseToCustomFieldMap = CRM_Core_BAO_Cache::getItem('donor search', 'response to custom field map');
+    if (!$responseToCustomFieldMap) {
+      $responseToCustomFieldMap = array();
+      foreach (self::getAttributes() as $key => $fieldInfo) {
         $customFieldID = civicrm_api3('custom_field', 'getvalue', array(
           'name' => $fieldInfo['name'],
           'return' => 'id',
         ));
-        $xmlToCustomFieldMap[$xmlName] = 'custom_' . $customFieldID;
+        $responseToCustomFieldMap[$key] = 'custom_' . $customFieldID;
       }
-      $xmlName = NULL;
-      CRM_Core_BAO_Cache::setItem($xmlToCustomFieldMap, 'donor search', 'xml to custom field map');
+      $key = NULL;
+      CRM_Core_BAO_Cache::setItem($responseToCustomFieldMap, 'donor search', 'response to custom field map');
     }
-    return CRM_Utils_Array::value($xmlName, $xmlToCustomFieldMap, $xmlToCustomFieldMap);
+    return CRM_Utils_Array::value($key, $responseToCustomFieldMap, $responseToCustomFieldMap);
   }
 
   public static function getBasicSearchFields() {
     return array(
-      'id' => 'id',
-      'dFname' => 'first_name',
-      'dMname' => 'middle_name',
-      'dLname' => 'last_name',
-      'dAddress' => 'street_address',
-      'dCity' => 'city',
-      'dZip' => 'postal_code',
-      'dState' => 'state_province',
-      'dEmployer' => 'current_employer',
-      'dSFname' => 'spouse.first_name',
-      'dSMname' => 'spouse.middle_name',
-      'dSLname' => 'spouse.last_name',
+      'ClientID' => 'id',
+      'firstName' => 'first_name',
+      'middleName' => 'middle_name',
+      'lastName' => 'last_name',
+      'homeStreetAddress' => 'street_address',
+      'homeCity' => 'city',
+      'homeZip' => 'postal_code',
+      'homeState' => 'state_province',
+      'Employer' => 'current_employer',
+      'spouseFirst' => 'spouse.first_name',
+      'spouseMiddle' => 'spouse.middle_name',
+      'spouseLast' => 'spouse.last_name',
     );
   }
 
