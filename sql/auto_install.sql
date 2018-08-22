@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `civicrm_ds_saved_search`;
 CREATE TABLE `civicrm_ds_saved_search` (
 
    `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'Donor Search saved search ID',
