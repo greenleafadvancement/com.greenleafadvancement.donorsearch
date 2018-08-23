@@ -307,7 +307,7 @@ class CRM_DonorSearch_FieldInfo {
 
   public static function getBasicSearchFields() {
     return array(
-      'ClientID' => 'id',
+      'clientID' => 'id',
       'firstName' => 'first_name',
       'middleName' => 'middle_name',
       'lastName' => 'last_name',

@@ -61,7 +61,7 @@
        });
     }
 
-    $('input[name=ClientID]', $form).each(showHideFields).change(showHideFields).change(autoFill);
+    $('input[name=clientID]', $form).each(showHideFields).change(showHideFields).change(autoFill);
   });
 </script>
 {/literal}

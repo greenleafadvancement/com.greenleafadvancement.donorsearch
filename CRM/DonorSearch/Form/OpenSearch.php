@@ -115,7 +115,7 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
         if ($homeAddress['count']) {
           foreach (CRM_DonorSearch_FieldInfo::getBasicSearchFields() as $name => $field) {
             // Do not assign 'id' default value from $homeAddress
-            if ($name == 'ClientID') {
+            if ($name == 'clientID') {
               continue;
             }
             // Do not set default value if the field value is empty.
@@ -134,7 +134,7 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
    * Build the form object.
    */
   public function buildQuickForm() {
-    $this->addEntityRef('ClientID', ts('Search for'), array('create' => TRUE, 'api' => array('params' => array('contact_type' => 'Individual'))), TRUE);
+    $this->addEntityRef('clientID', ts('Search for'), array('create' => TRUE, 'api' => array('params' => array('contact_type' => 'Individual'))), TRUE);
     $this->add('text', 'firstName', ts('First Name'), array(), TRUE);
     $this->add('text', 'middleName', ts('Middle Name'));
     $this->add('text', 'lastName', ts('Last Name'), array(), TRUE);
@@ -170,7 +170,7 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
     if ($this->_id) {
       $dao->id = $this->_id;
     }
-    $dao->contact_id = $values['ClientID'];
+    $dao->contact_id = $values['clientID'];
     $dao->creator_id = CRM_Core_Session::getLoggedInContactID();
     $dao->search_criteria = serialize($searchFieldValues);
     $dao->save();
@@ -179,8 +179,8 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
     list($isError, $response) = CRM_DonorSearch_API::singleton($searchFieldValues)->send();
 
     // populate the custom fields with desired DS data and redirect to DS profile
-    CRM_DonorSearch_Util::processDSData($response, $searchFieldValues['ClientID']);
-    $url = CRM_DonorSearch_Util::getDonorSearchDetailsLink($searchFieldValues['ClientID']);
+    CRM_DonorSearch_Util::processDSData($response, $searchFieldValues['clientID']);
+    $url = CRM_DonorSearch_Util::getDonorSearchDetailsLink($searchFieldValues['clientID']);
     CRM_Utils_System::redirect($url);
   }
 

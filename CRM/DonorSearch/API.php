@@ -80,8 +80,9 @@ class CRM_DonorSearch_API {
    */
   public function get() {
     $params = array(
+      'Store' => 1,
       'key' => $this->_searchParams['key'],
-      'ClientID' => $this->_searchParams['ClientID'],
+      'clientID' => $this->_searchParams['clientID'],
     );
     return $this->sendRequest($params);
   }

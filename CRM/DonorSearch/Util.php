@@ -66,8 +66,8 @@ class CRM_DonorSearch_Util {
 
     // update DS data recieved from GET or SEND api above, against contact ID (as search ID)
     if (!$isError) {
-      self::processDSData($response, $previousDSparams['ClientID']);
-      CRM_Core_Session::setStatus(E::ts("DS Record updated for Contact ID - " . $previousDSparams['ClientID']), E::ts('Success'), 'success');
+      self::processDSData($response, $previousDSparams['clientID']);
+      CRM_Core_Session::setStatus(E::ts("DS Record updated for Contact ID - " . $previousDSparams['clientID']), E::ts('Success'), 'success');
     }
 
     // redirect to 'Donor Integrated Search' page
