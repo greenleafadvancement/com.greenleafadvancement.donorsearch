@@ -26,7 +26,7 @@
  */
 
 /**
- * One place to store frequently used Donor Search variables.
+ * One place to store frequently used DonorSearch variables.
  *
  * @package CRM
  * @copyright CiviCRM LLC (c) 2004-2016
@@ -36,7 +36,7 @@
 class CRM_DonorSearch_FieldInfo {
 
   /**
-   * Return array of Donor Search fields where key is the response key and value contains attributes of corresponding custom field
+   * Return array of DonorSearch fields where key is the response key and value contains attributes of corresponding custom field
    *
    * @return array
    */
@@ -289,7 +289,7 @@ class CRM_DonorSearch_FieldInfo {
   }
 
   public static function getResponseToCustomFieldNameMap($key = NULL) {
-    $responseToCustomFieldMap = CRM_Core_BAO_Cache::getItem('donor search', 'response to custom field map');
+    $responseToCustomFieldMap = CRM_Core_BAO_Cache::getItem('DonorSearch', 'response to custom field map');
     if (!$responseToCustomFieldMap) {
       $responseToCustomFieldMap = array();
       foreach (self::getAttributes() as $key => $fieldInfo) {
@@ -300,7 +300,7 @@ class CRM_DonorSearch_FieldInfo {
         $responseToCustomFieldMap[$key] = 'custom_' . $customFieldID;
       }
       $key = NULL;
-      CRM_Core_BAO_Cache::setItem($responseToCustomFieldMap, 'donor search', 'response to custom field map');
+      CRM_Core_BAO_Cache::setItem($responseToCustomFieldMap, 'DonorSearch', 'response to custom field map');
     }
     return CRM_Utils_Array::value($key, $responseToCustomFieldMap, $responseToCustomFieldMap);
   }

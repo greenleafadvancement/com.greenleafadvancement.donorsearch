@@ -4,7 +4,7 @@
   <tr>
     <td>
       <div class="messages help">
-        <p>Register your Donor Search API key in CiviCRM (which will be used for Donor Search API authentication )<br/>
+        <p>Register your DonorSearch API key in CiviCRM (which will be used for DonorSearch API authentication )<br/>
          either by submitting your account credential OR existing API key below:</p>
        </div>
      </td>
@@ -36,7 +36,7 @@
    <tr>
      <td>
        <div class="crm-accordion-wrapper crm-ajax-accordion">
-         <div class="crm-accordion-header">Donor Search API Key</div>
+         <div class="crm-accordion-header">DonorSearch API Key</div>
          <div class="crm-accordion-body">
            <div>
              <table class="form-layout-compressed">

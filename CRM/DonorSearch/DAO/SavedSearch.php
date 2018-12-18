@@ -47,7 +47,7 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
    */
   static $_log = false;
   /**
-   * Donor Search saved search ID
+   * DonorSearch saved search ID
    *
    * @var int unsigned
    */
@@ -65,7 +65,7 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
    */
   public $creator_id;
   /**
-   * Serialized donor search data
+   * Serialized DonorSearch data
    *
    * @var longtext
    */
@@ -90,7 +90,7 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
         'id' => array(
           'name' => 'id',
           'type' => CRM_Utils_Type::T_INT,
-          'description' => 'Donor Search saved search ID',
+          'description' => 'DonorSearch saved search ID',
           'required' => true,
         ) ,
         'contact_id' => array(
@@ -113,7 +113,7 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
           'name' => 'search_criteria',
           'type' => CRM_Utils_Type::T_LONGTEXT,
           'title' => ts('Search Criteria') ,
-          'description' => 'Serialized donor search data',
+          'description' => 'Serialized DonorSearch data',
         ) ,
       );
       CRM_Core_DAO_AllCoreTables::invoke(__CLASS__, 'fields_callback', Civi::$statics[__CLASS__]['fields']);

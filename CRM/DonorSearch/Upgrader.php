@@ -13,7 +13,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
    */
   public function install() {
     civicrm_api3('Navigation', 'create', array(
-      'label' => ts('Register Donor Search API Key', array('domain' => 'com.greenleafadvancement.donorsearch')),
+      'label' => ts('Register DonorSearch API Key', array('domain' => 'com.greenleafadvancement.donorsearch')),
       'name' => 'ds_register_api',
       'url' => 'civicrm/ds/register?reset=1',
       'domain_id' => CRM_Core_Config::domainID(),
@@ -34,7 +34,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
     ));
     $params = array(
       array(
-        'label' => ts('New Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
+        'label' => ts('New DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'name' => 'ds_new',
         'url' => 'civicrm/ds/open-search?reset=1',
       ),
@@ -54,7 +54,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
     }
 
     $customGroup = civicrm_api3('custom_group', 'create', array(
-      'title' => ts('Donor Search', array('domain' => 'com.greenleafadvancement.donorsearch')),
+      'title' => ts('DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')),
       'name' => 'DS_details',
       'extends' => 'Contact',
       'domain_id' => CRM_Core_Config::domainID(),
@@ -98,10 +98,10 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
       civicrm_api3('custom_group', 'delete', array('id' => $customGroupID));
     }
 
-    // delete 'donor search' cache
-    CRM_Core_BAO_Cache::deleteGroup('donor search');
+    // delete 'DonorSearch' cache
+    CRM_Core_BAO_Cache::deleteGroup('DonorSearch');
 
-    // delete Donor Search API key
+    // delete DonorSearch API key
     Civi::settings()->revert('ds_api_key');
   }
 
@@ -120,7 +120,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
   }
 
   /**
-   * disable/enable/delete Donor Search links
+   * disable/enable/delete DonorSearch links
    *
    * @param string $action
    * @throws \CiviCRM_API3_Exception

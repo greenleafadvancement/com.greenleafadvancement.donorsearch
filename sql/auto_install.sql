@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS `civicrm_ds_saved_search`;
 CREATE TABLE `civicrm_ds_saved_search` (
 
-   `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'Donor Search saved search ID',
+   `id` INT unsigned NOT NULL AUTO_INCREMENT COMMENT 'DonorSearch saved search ID',
    `contact_id` INT unsigned NOT NULL COMMENT 'Foreign key to the contact for this record',
    `creator_id` INT unsigned DEFAULT NULL COMMENT 'Foreign key to the contact who created this record',
-   `search_criteria` LONGTEXT NOT NULL COMMENT 'Serialized donor search data',
+   `search_criteria` LONGTEXT NOT NULL COMMENT 'Serialized DonorSearch data',
 
    PRIMARY KEY (`id`),
 

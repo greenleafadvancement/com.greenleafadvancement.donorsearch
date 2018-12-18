@@ -4,12 +4,12 @@
   <base>CRM/DonorSearch</base>
   <class>SavedSearch</class>
   <name>civicrm_ds_saved_search</name>
-  <comment>Myob table to save donor search criteria.</comment>
+  <comment>Myob table to save DonorSearch criteria.</comment>
   <field>
     <name>id</name>
     <type>int unsigned</type>
     <required>true</required>
-    <comment>Donor Search saved search ID</comment>
+    <comment>DonorSearch saved search ID</comment>
   </field>
   <primaryKey>
     <name>id</name>
@@ -43,6 +43,6 @@
   <field>
     <name>search_criteria</name>
     <type>longtext</type>
-    <comment>Serialized donor search data</comment>
+    <comment>Serialized DonorSearch data</comment>
   </field>
 </table>

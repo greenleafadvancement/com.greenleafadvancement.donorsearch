@@ -33,7 +33,7 @@
 class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
 
   /**
-   * Donor Search API key
+   * DonorSearch API key
    *
    * @var string
    */
@@ -134,7 +134,7 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
     }
 
     Civi::settings()->set('ds_api_key', $apiKey);
-    CRM_Core_Session::setStatus(ts("Donor Search API key registered"), ts('Success'), 'success');
+    CRM_Core_Session::setStatus(ts("DonorSearch API key registered"), ts('Success'), 'success');
   }
 
 }

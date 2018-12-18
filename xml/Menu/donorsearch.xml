@@ -3,13 +3,13 @@
   <item>
     <path>civicrm/ds/register</path>
     <page_callback>CRM_DonorSearch_Form_Register</page_callback>
-    <title>Register donor search API key</title>
+    <title>Register DonorSearch API key</title>
     <access_arguments>administer CiviCRM</access_arguments>
   </item>
   <item>
     <path>civicrm/ds/open-search</path>
     <page_callback>CRM_DonorSearch_Form_OpenSearch</page_callback>
-    <title>Donor Open Search</title>
+    <title>New DonorSearch</title>
     <access_arguments>access DonorSearch</access_arguments>
   </item>
   <item>

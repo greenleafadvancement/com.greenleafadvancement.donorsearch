@@ -33,7 +33,7 @@ use CRM_DonorSearch_ExtensionUtil as E;
 class CRM_DonorSearch_Util {
 
   /**
-   * Update the current Donor Search data of a contact
+   * Update the current DonorSearch data of a contact
    */
   public static function updateRecord() {
     $dao = new CRM_DonorSearch_DAO_SavedSearch();
@@ -42,22 +42,22 @@ class CRM_DonorSearch_Util {
     $dao->find(TRUE);
     $previousDSparams = unserialize($dao->search_criteria);
 
-    // If Donor Search API key is missing
+    // If DonorSearch API key is missing
     if (empty($previousDSparams['key'])) {
       $apiKey = Civi::settings()->get('ds_api_key');
       if (empty($apiKey)) {
-        CRM_Core_Error::fatal(E::ts("Donor Search API key missing. Navigate to Administer >> System Settings >> Register Donor Search API Key to register API key"));
+        CRM_Core_Error::fatal(E::ts("DonorSearch API key missing. Navigate to Administer >> System Settings >> Register DonorSearch API Key to register API key"));
       }
       $previousDSparams['key'] = $apiKey;
     }
 
-    // Fetch Donor Search data via GET api
+    // Fetch DonorSearch data via GET api
     $apiRequest = CRM_DonorSearch_API::singleton($previousDSparams);
     list($isError, $response) = $apiRequest->get();
 
     // If there is no record found for given Search ID then register a new search
     // using search parameters used earlier via SEND api. This will return the
-    // corrosponding donor search data which is later stored against logged in contact ID
+    // corrosponding DonorSearch data which is later stored against logged in contact ID
     if ($isError && (trim($response) == 'No records found')) {
       if (!empty($previousDSparams)) {
         list($isError, $response) = $apiRequest->send();
@@ -75,10 +75,10 @@ class CRM_DonorSearch_Util {
   }
 
   /**
-   * Process Donor Search data, recieved from SEND or GET api
+   * Process DonorSearch data, recieved from SEND or GET api
    *
    * @param array $response
-   *   donor search data as keyed array
+   *   DonorSearch data as keyed array
    * @param int $contactID
    *   contact ID as search ID
    *
@@ -99,14 +99,14 @@ class CRM_DonorSearch_Util {
       $params[$responseToFieldMap[$key]] = $value;
     }
 
-    // update the contact (id - $contactID) with donor search data
+    // update the contact (id - $contactID) with DonorSearch data
     civicrm_api3('Contact', 'create', $params);
 
     return $response;
   }
 
   /**
-   * View the desired Donor Search profile of a contact
+   * View the desired DonorSearch profile of a contact
    */
   public static function viewProfile() {
     $self = NULL;
@@ -120,12 +120,12 @@ class CRM_DonorSearch_Util {
       CRM_Utils_System::redirect($profileLink);
     }
     else {
-      CRM_Core_Error::fatal(E::ts('There is no Donor Search profile'));
+      CRM_Core_Error::fatal(E::ts('There is no DonorSearch profile'));
     }
   }
 
   /**
-   * Get donor search custom group view link
+   * Get DonorSearch custom group view link
    */
   public static function getDonorSearchDetailsLink($contactID) {
     $customGroupID = civicrm_api3('customGroup', 'getvalue', array(

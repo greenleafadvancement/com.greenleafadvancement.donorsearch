@@ -27,7 +27,7 @@
 use CRM_DonorSearch_ExtensionUtil as E;
 
 /**
- * Class to send Donor Search API request
+ * Class to send DonorSearch API request
  */
 class CRM_DonorSearch_API {
 
@@ -64,7 +64,7 @@ class CRM_DonorSearch_API {
    * Singleton function used to manage this object.
    *
    * @param array $searchParams
-   *   Donor Search parameters
+   *   DonorSearch parameters
    *
    * @return CRM_DonorSearch_API
    */
@@ -76,7 +76,7 @@ class CRM_DonorSearch_API {
   }
 
   /**
-   * Function to make Donor Search send API request
+   * Function to make DonorSearch send API request
    */
   public function get() {
     $params = array(
@@ -88,7 +88,7 @@ class CRM_DonorSearch_API {
   }
 
   /**
-   * Function to make Donor Search send API request
+   * Function to make DonorSearch send API request
    */
   public function send() {
     $params = $this->_searchParams;
@@ -99,14 +99,14 @@ class CRM_DonorSearch_API {
   }
 
   /**
-   * Function to make Donor Search getKey API request
+   * Function to make DonorSearch getKey API request
    */
   public function getKey() {
     return $this->sendRequest($this->_searchParams, FALSE, 'https://www.donorlead.net/API/getKey.php');
   }
 
   /**
-   * Make Donor Search API request
+   * Make DonorSearch API request
    *
    * @param array $params
    *    API parameters to send.
@@ -171,7 +171,7 @@ class CRM_DonorSearch_API {
     }
 
     if (!empty($errorMessage)) {
-      CRM_Core_Session::setStatus(E::ts("Donor Search API error: ") . $errorMessage, E::ts('Error'), 'error');
+      CRM_Core_Session::setStatus(E::ts("DonorSearch API error: ") . $errorMessage, E::ts('Error'), 'error');
     }
 
     return $isError;
