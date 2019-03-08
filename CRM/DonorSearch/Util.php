@@ -46,7 +46,7 @@ class CRM_DonorSearch_Util {
     if (empty($previousDSparams['key'])) {
       $apiKey = Civi::settings()->get('ds_api_key');
       if (empty($apiKey)) {
-        CRM_Core_Error::fatal(E::ts("DonorSearch API key missing. Navigate to Administer >> System Settings >> Register DonorSearch API Key to register API key"));
+        CRM_DonorSearch_Util::promptForMissingKey();
       }
       $previousDSparams['key'] = $apiKey;
     }
@@ -120,7 +120,9 @@ class CRM_DonorSearch_Util {
       CRM_Utils_System::redirect($profileLink);
     }
     else {
-      CRM_Core_Error::fatal(E::ts('There is no DonorSearch profile'));
+      CRM_Core_Error::statusBounce(E::ts('There is no DonorSearch profile for contact id %1', array(
+        '1' => $cid,
+      )));
     }
   }
 
@@ -135,4 +137,16 @@ class CRM_DonorSearch_Util {
     return CRM_Utils_System::url('civicrm/contact/view', sprintf('reset=1&gid=%d&cid=%d&selectedChild=custom_%d', $customGroupID, $contactID, $customGroupID));
   }
 
+  /**
+   * Redirect to key registration page, with message.
+   */
+  public static function promptForMissingKey() {
+    CRM_Core_Session::setStatus(
+      E::ts("DonorSearch API key missing. See instructions to register API key"),
+      E::ts('Missing key'),
+      'error'
+    );
+    CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm/ds/register', array('reset' => 1)));
+  }
 }
+

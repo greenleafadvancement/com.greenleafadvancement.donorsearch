@@ -18,7 +18,7 @@
   <urls>
     <url desc="Main Extension Page">https://civicrm.org/extensions/donorsearch-integration</url>
     <url desc="Documentation">https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch</url>
-    <url desc="Register">http://donorsearch.net</url>
+    <url desc="Register for api key">http://donorsearch.net</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
     <url desc="Support">https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch/issues</url>
   </urls>
@@ -28,7 +28,7 @@
   <compatibility>
     <ver>4.7</ver>
   </compatibility>
-  <comments>Requires an account and api key with the DonorSearch service. Visit &lt;a href="http://donorsearch.net"&gt;http://donorsearch.net&lt;/a&gt; for details.</comments>
+  <comments>Requires an account and api key with the DonorSearch service. Visit http://donorsearch.net for details. Note: this extension creates a new table `civicrm_ds_saved_search`</comments>
   <civix>
     <namespace>CRM/DonorSearch</namespace>
   </civix>
