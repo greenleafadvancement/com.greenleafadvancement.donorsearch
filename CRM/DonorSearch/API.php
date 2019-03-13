@@ -166,7 +166,7 @@ class CRM_DonorSearch_API {
       $isError = TRUE;
     }
     elseif ($response['status'] != 200) {
-      $errorMessage = $status['statusMessage'];
+      $errorMessage = $response['statusMessage'];
       $isError = TRUE;
     }
 
