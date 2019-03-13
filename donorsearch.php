@@ -121,7 +121,7 @@ function donorsearch_civicrm_pageRun(&$page) {
     $count = $result['count'];
     CRM_Core_Region::instance('page-header')->add(array(
       'markup' => '
-            <p>See the <a target="_blank" href="https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch/blob/master/README.md">DonorSearch CiviCRM documentation</a> for details.</p>
+            <p>See the <a target="_blank" href="https://greenleafadvancement.github.io/com.greenleafadvancement.donorsearch">DonorSearch CiviCRM documentation</a> for details.</p>
         ',
     ));
     if ($count) {

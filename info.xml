@@ -16,7 +16,7 @@
   </maintainer>
   <urls>
     <url desc="Main Extension Page">https://civicrm.org/extensions/donorsearch-integration</url>
-    <url desc="Documentation">https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch</url>
+    <url desc="Documentation">https://greenleafadvancement.github.io/com.greenleafadvancement.donorsearch</url>
     <url desc="Register for api key">http://donorsearch.net</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
     <url desc="Support">https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch/issues</url>
