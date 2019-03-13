@@ -46,7 +46,7 @@ class CRM_DonorSearch_Form_OpenSearch extends CRM_Core_Form {
   public function preProcess() {
     $this->_id = CRM_Utils_Request::retrieve('id', 'Positive', $this, FALSE, NULL, 'GET');
     $this->_cid = CRM_Utils_Request::retrieve('cid', 'Positive', $this, FALSE, NULL, 'GET');
-    $this->_apiKey = Civi::settings()->get('ds_api_key');
+    $this->_apiKey = CRM_DonorSearch_Util::getApiKey();
 
     $types = civicrm_api3('RelationshipType', 'get', array(
       'name_a_b' => array('IN' => array("Spouse of", "Partner of")),

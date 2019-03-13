@@ -44,7 +44,7 @@ class CRM_DonorSearch_Util {
 
     // If DonorSearch API key is missing
     if (empty($previousDSparams['key'])) {
-      $apiKey = Civi::settings()->get('ds_api_key');
+      $apiKey = self::getApiKey();
       if (empty($apiKey)) {
         CRM_DonorSearch_Util::promptForMissingKey();
       }
@@ -147,6 +147,23 @@ class CRM_DonorSearch_Util {
       'error'
     );
     CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm/ds/register', array('reset' => 1)));
+  }
+
+  /**
+   * Retrieve DS API key from settings, appropriately decrypted.
+   */
+  public static function getApiKey() {
+    return CRM_Utils_Crypt::decrypt(Civi::settings()->get('ds_api_key'));
+  }
+
+  /**
+   * Store DS API key from settings, appropriately encrypted.
+   *
+   * @param type $plainTextKey
+   *    Key to store, in plain (unencrypted) text
+   */
+  public static function saveApiKey($plainTextKey) {
+    Civi::settings()->set('ds_api_key', CRM_Utils_Crypt::encrypt($plainTextKey));
   }
 }
 

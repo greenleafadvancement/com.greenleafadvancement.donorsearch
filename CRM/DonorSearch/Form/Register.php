@@ -46,7 +46,10 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
     if (!CRM_Core_Permission::check('administer CiviCRM')) {
       CRM_Core_Error::fatal(ts('You do not permission to access this page, please contact your system administrator.'));
     }
-    $this->_apiKey = Civi::settings()->get('ds_api_key');
+    $this->_apiKey = CRM_DonorSearch_Util::getApiKey();
+
+    // Ensure we get reloaded with reset=1 after submission.
+    $this->controller->_destination = CRM_Utils_System::url('civicrm/ds/register', 'reset=1');
   }
 
   /**
@@ -133,7 +136,7 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
       $apiKey = $response;
     }
 
-    Civi::settings()->set('ds_api_key', $apiKey);
+    CRM_DonorSearch_Util::saveApiKey($apiKey);
     CRM_Core_Session::setStatus(ts("DonorSearch API key registered"), ts('Success'), 'success');
   }
 
