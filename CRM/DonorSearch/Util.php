@@ -53,7 +53,7 @@ class CRM_DonorSearch_Util {
 
     // Fetch DonorSearch data via GET api
     $apiRequest = CRM_DonorSearch_API::singleton($previousDSparams);
-    list($isError, $response) = $apiRequest->get();
+    list($isError, $response) = $apiRequest->get(TRUE);
 
     // If there is no record found for given Search ID then register a new search
     // using search parameters used earlier via SEND api. This will return the

@@ -77,14 +77,17 @@ class CRM_DonorSearch_API {
 
   /**
    * Function to make DonorSearch send API request
+   *
+   * @param bool $doTimestamp
+   *    If TRUE, add a current timestamp in a 'submit_time' array element.
    */
-  public function get() {
+  public function get($doTimestamp = FALSE) {
     $params = array(
       'Store' => 1,
       'key' => $this->_searchParams['key'],
       'clientID' => $this->_searchParams['clientID'],
     );
-    return $this->sendRequest($params);
+    return $this->sendRequest($params, $doTimestamp);
   }
 
   /**
