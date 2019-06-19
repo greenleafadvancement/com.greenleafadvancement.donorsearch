@@ -37,10 +37,15 @@ class CRM_DonorSearch_FieldInfo {
 
   /**
    * Return array of DonorSearch fields where key is the response key and value contains attributes of corresponding custom field
+   * This array is used for:
+   *   1. creating the CiviCRM custom fields, and
+   *   2. mapping DonorSearch data to CiviCRM custom fields.
    *
    * @return array
    */
   public static function getAttributes() {
+    // Define an srray of DonorSearch fields related to CiviCRM custom fields. Format is like so:
+    //   [DS API field key] => [array of custom field parameters, as returned in CustomField.getSingle]
     return array(
       'DS_Rating' => array(
         'name' => 'ds_rating',
@@ -52,7 +57,7 @@ class CRM_DonorSearch_FieldInfo {
         'help_pre' => 'pre help',
         'help_post' => 'post help',
       ),
-      'Overall' => array(
+      'newQS' => array(
         'name' => 'overall',
         'label' => ts('Overall', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 5,
@@ -79,7 +84,7 @@ class CRM_DonorSearch_FieldInfo {
         'is_search_range' => 1,
         'weight' => 3,
       ),
-      'EstimatedCapacity' => array(
+      'CapacityRangeBasedOnWealth' => array(
         'name' => 'capacity_range',
         'label' => ts('Wealth capacity range', array('domain' => 'com.greenleafadvancement.donorsearch')),
         'text_length' => 35,
