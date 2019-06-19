@@ -27,7 +27,7 @@
   <compatibility>
     <ver>4.7</ver>
   </compatibility>
-  <comments>Requires an account and api key with the DonorSearch service. Visit http://donorsearch.net for details.</comments>
+  <comments>DonorSearch provides a comprehensive research and analytics platform to segment and identify an organization’s top donor prospects. With this integration, users can pull in, search on, and report on over 20 wealth and philanthropy data points about their constituents right from within CiviCRM, supercharging annual, major, and planned giving programs.  Please contact civi@donorsearch.net to request the free limited-license API key required to connect this extension with the DonorSearch service.</comments>
   <civix>
     <namespace>CRM/DonorSearch</namespace>
   </civix>
