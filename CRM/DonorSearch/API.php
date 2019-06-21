@@ -124,6 +124,8 @@ class CRM_DonorSearch_API {
    *      $result Array of relevant values from the result of the API call.
    */
   public function sendRequest(array $params, $doTimestamp = FALSE, $baseUrl = 'https://data.donorlead.net/v2') {
+    $this->setDefaultParams($params);
+
     // send API request with desired search arguments
     $url = $baseUrl . '/?' . http_build_query($params);
     list($status, $responseJSON) = $this->_httpClient->get($url);
@@ -139,6 +141,20 @@ class CRM_DonorSearch_API {
       self::throwDSError($responseJSON),
       $response,
     );
+  }
+
+  /**
+   * For a given array of parameters, assign values to certain parameters if they're
+   * not already defined in the array.
+   *
+   * @param array $params Parameters to be passed to the DonorSearch API.
+   */
+  private function setDefaultParams(&$params = array()) {
+    $defaults = array(
+      // Specify that ProfileLink should contain the URL for the "new" profile format.
+      'ProfileVersion' => 2,
+    );
+    $params += $defaults;
   }
 
   /**
