@@ -140,7 +140,19 @@ function donorsearch_civicrm_pageRun(&$page) {
           'id' => $currentSearch)) . '">
           <span>' . ts('Update DonorSearch Profile', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
         </a>
+        <div class="spacer"></div>
       ',
+      ));
+    } else {
+      CRM_Core_Region::instance('page-header')->add(array(
+        'markup' => '
+        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array(
+          'reset' => 1,
+          'cid'   => $contactId)) . '">
+          <span>' . ts('New DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
+        </a>
+        <div class="spacer"></div>
+',
       ));
     }
   }
