@@ -29,6 +29,7 @@ link.
 A valid DonorSearch API key is required. After installing this extension,
 navigate to  _Administer_ > _System Settings_ > _Register DonorSearch API key_
 and follow instructions on that page to obtain an API key.
+Next, go to Permissions in Drupal and enable the `Access DonorSearch` permission. Save that updated permission.
 
 ## Usage
 ### Creating a linked profile
