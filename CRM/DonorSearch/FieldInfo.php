@@ -294,8 +294,8 @@ class CRM_DonorSearch_FieldInfo {
   }
 
   public static function getResponseToCustomFieldNameMap($key = NULL) {
-    $responseToCustomFieldMap = CRM_Core_BAO_Cache::getItem('DonorSearch', 'response to custom field map');
-    if (!$responseToCustomFieldMap) {
+    $responseToCustomFieldMap = Civi::cache('long')->get('donorsearch_custom_field_map_response');
+    if (!empty($responseToCustomFieldMap)) {
       $responseToCustomFieldMap = array();
       foreach (self::getAttributes() as $key => $fieldInfo) {
         $customFieldID = civicrm_api3('custom_field', 'getvalue', array(
@@ -305,7 +305,7 @@ class CRM_DonorSearch_FieldInfo {
         $responseToCustomFieldMap[$key] = 'custom_' . $customFieldID;
       }
       $key = NULL;
-      CRM_Core_BAO_Cache::setItem($responseToCustomFieldMap, 'DonorSearch', 'response to custom field map');
+      Civi::cache('long')->set('donorsearch_custom_field_map_response', $responseToCustomFieldMap);
     }
     return CRM_Utils_Array::value($key, $responseToCustomFieldMap, $responseToCustomFieldMap);
   }
