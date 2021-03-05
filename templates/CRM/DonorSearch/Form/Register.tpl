@@ -6,7 +6,7 @@
       <div class="messages help">
         <p>Register your DonorSearch API key in CiviCRM (which will be used for DonorSearch API authentication)<br/>
          by submitting either your account credential OR an existing API key.</p>
-        <p>To obtain valid credentials, please contact Michael Bronson at <a href="mailto:mike@donorsearch.net">mike@donorsearch.net</a>.</p>
+        <p>To obtain valid credentials, please contact Jonathan Phillips at <a href="mailto:jonathan@donorsearch.net">jonathan@donorsearch.net</a>.</p>
        </div>
      </td>
    </tr>
