@@ -295,7 +295,7 @@ class CRM_DonorSearch_FieldInfo {
 
   public static function getResponseToCustomFieldNameMap($key = NULL) {
     $responseToCustomFieldMap = Civi::cache('long')->get('donorsearch_custom_field_map_response');
-    if (!empty($responseToCustomFieldMap)) {
+    if (empty($responseToCustomFieldMap)) {
       $responseToCustomFieldMap = array();
       foreach (self::getAttributes() as $key => $fieldInfo) {
         $customFieldID = civicrm_api3('custom_field', 'getvalue', array(
