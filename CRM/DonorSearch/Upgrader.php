@@ -99,7 +99,7 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
     }
 
     // delete 'DonorSearch' cache
-    CRM_Core_BAO_Cache::deleteGroup('DonorSearch');
+//    CRM_Core_BAO_Cache::deleteGroup('DonorSearch');
 
     // delete DonorSearch API key
     Civi::settings()->revert('ds_api_key');
