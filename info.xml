@@ -21,14 +21,21 @@
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
     <url desc="Support">https://github.com/greenleafadvancement/com.greenleafadvancement.donorsearch/issues</url>
   </urls>
-  <releaseDate>2021-03-08</releaseDate>
-  <version>1.1.6</version>
+  <releaseDate>2023-08-01</releaseDate>
+  <version>1.2</version>
   <develStage>stable</develStage>
   <compatibility>
-    <ver>4.7</ver>
+    <ver>5.56.0</ver>
   </compatibility>
-  <comments>DonorSearch provides a comprehensive research and analytics platform to segment and identify an organization’s top donor prospects. With this integration, users can pull in, search on, and report on over 20 wealth and philanthropy data points about their constituents right from within CiviCRM, supercharging annual, major, and planned giving programs.  Please contact civi@donorsearch.net to request the free limited-license API key required to connect this extension with the DonorSearch service.</comments>
+  <comments>DonorSearch provides a comprehensive research and analytics platform to segment and identify an organization&#x2019;s top donor prospects. With this integration, users can pull in, search on, and report on over 20 wealth and philanthropy data points about their constituents right from within CiviCRM, supercharging annual, major, and planned giving programs.  Please contact civi@donorsearch.net to request the free limited-license API key required to connect this extension with the DonorSearch service.</comments>
   <civix>
     <namespace>CRM/DonorSearch</namespace>
+    <format>22.10.0</format>
   </civix>
+  <mixins>
+    <mixin>menu-xml@1.0.0</mixin>
+  </mixins>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+  </classloader>
 </extension>
