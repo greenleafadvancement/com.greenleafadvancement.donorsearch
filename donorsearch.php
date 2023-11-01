@@ -58,12 +58,12 @@ function changeDSNavigation($action) {
 
   foreach ($names as $name) {
     if ($name == 'delete') {
-      $id = civicrm_api3('Navigation', 'getvalue', array(
+      $result = civicrm_api3('Navigation', 'get', array(
         'return' => "id",
         'name' => $name,
       ));
-      if ($id) {
-        civicrm_api3('Navigation', 'delete', array('id' => $id));
+      if (!empty($result['id'])) {
+        civicrm_api3('Navigation', 'delete', array('id' => $result['id']));
       }
     }
     else {

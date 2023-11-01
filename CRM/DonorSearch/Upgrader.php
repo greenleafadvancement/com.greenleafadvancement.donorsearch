@@ -80,11 +80,12 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
   public function uninstall() {
     self::changeNavigation('delete');
 
-    $customGroupID = civicrm_api3('custom_group', 'getvalue', array(
+    $result = civicrm_api3('custom_group', 'get', array(
       'name' => 'DS_details',
       'return' => 'id',
     ));
-    if (!empty($customGroupID)) {
+    if (!empty($result['id'])) {
+      $customGroupID = $result['id'];
       foreach (CRM_DonorSearch_FieldInfo::getAttributes() as $param) {
         $customFieldID = civicrm_api3('custom_field', 'getvalue', array(
           'custom_group_id' => $customGroupID,
@@ -130,12 +131,12 @@ class CRM_DonorSearch_Upgrader extends CRM_DonorSearch_Upgrader_Base {
 
     foreach ($names as $name) {
       if ($action == 'delete') {
-        $id = civicrm_api3('Navigation', 'getvalue', array(
+        $result = civicrm_api3('Navigation', 'get', array(
           'return' => "id",
           'name' => $name,
         ));
-        if ($id) {
-          civicrm_api3('Navigation', 'delete', array('id' => $id));
+        if (!empty($result['id'])) {
+          civicrm_api3('Navigation', 'delete', array('id' => $result['id']));
         }
       }
       else {

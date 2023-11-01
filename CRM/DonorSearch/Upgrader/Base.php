@@ -293,7 +293,6 @@ class CRM_DonorSearch_Upgrader_Base {
         CRM_Utils_File::sourceSQLFile(CIVICRM_DSN, $file);
       }
     }
-    $this->setCurrentRevision(NULL);
   }
 
   public function onEnable() {
