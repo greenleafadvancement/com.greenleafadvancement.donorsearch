@@ -82,7 +82,10 @@ function changeDSNavigation($action) {
  * Implements hook_civicrm_permission().
  */
 function donorsearch_civicrm_permission(&$permissions) {
-  $permissions += array('access DonorSearch' => ts('Access DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')));
+  $permissions['access DonorSearch'] = [
+    'label' => E::ts('Access DonorSearch'),
+    'description' => E::ts('Grants permission to access DonorSearch'),
+  ];
 }
 
 /**
