@@ -58,7 +58,7 @@ class CRM_DonorSearch_Util {
     // If there is no record found for given Search ID then register a new search
     // using search parameters used earlier via SEND api. This will return the
     // corrosponding DonorSearch data which is later stored against logged in contact ID
-    if ($isError && (trim($response) == 'No records found')) {
+    if ($isError && is_string($response) && (trim($response) == 'No records found')) {
       if (!empty($previousDSparams)) {
         list($isError, $response) = $apiRequest->send();
       }

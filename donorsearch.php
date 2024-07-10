@@ -82,7 +82,9 @@ function changeDSNavigation($action) {
  * Implements hook_civicrm_permission().
  */
 function donorsearch_civicrm_permission(&$permissions) {
-  $permissions += array('access DonorSearch' => ts('Access DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')));
+  $permissions['access DonorSearch'] = [
+    'label' => E::ts('Access DonorSearch')
+  ];
 }
 
 /**
@@ -224,9 +226,9 @@ function donorsearch_civicrm_entityTypes(&$entityTypes) {
  * Implements hook_civicrm_alterAPIPermissions().
  */
 function donorsearch_civicrm_alterAPIPermissions($entity, $action, $params, &$permissions) {
-  $permissions['donor_search'] = array(
-    'default' => array('access DonorSearch'),
-  );
+  $permissions['donor_search'] = [
+    'label' => E::ts('Access DonorSearch')
+  ];
 }
 
 /**
