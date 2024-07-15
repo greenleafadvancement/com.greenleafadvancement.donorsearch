@@ -24,30 +24,12 @@ function donorsearch_civicrm_install() {
 }
 
 /**
- * Implements hook_civicrm_uninstall().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_uninstall
- */
-function donorsearch_civicrm_uninstall() {
-  _donorsearch_civix_civicrm_uninstall();
-}
-
-/**
  * Implements hook_civicrm_enable().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_enable
  */
 function donorsearch_civicrm_enable() {
   _donorsearch_civix_civicrm_enable();
-}
-
-/**
- * Implements hook_civicrm_disable().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_disable
- */
-function donorsearch_civicrm_disable() {
-  _donorsearch_civix_civicrm_disable();
 }
 
 /**
@@ -200,15 +182,6 @@ function donorSearch_civicrm_summaryActions(&$menu, $contactId) {
       );
     }
   }
-}
-
-/**
- * Implements hook_civicrm_upgrade().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_upgrade
- */
-function donorsearch_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _donorsearch_civix_civicrm_upgrade($op, $queue);
 }
 
 /**

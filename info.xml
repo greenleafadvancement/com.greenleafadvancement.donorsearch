@@ -30,12 +30,16 @@
   <comments>DonorSearch provides a comprehensive research and analytics platform to segment and identify an organization&#x2019;s top donor prospects. With this integration, users can pull in, search on, and report on over 20 wealth and philanthropy data points about their constituents right from within CiviCRM, supercharging annual, major, and planned giving programs.  Please contact civi@donorsearch.net to request the free limited-license API key required to connect this extension with the DonorSearch service.</comments>
   <civix>
     <namespace>CRM/DonorSearch</namespace>
-    <format>22.10.0</format>
+    <format>23.02.1</format>
   </civix>
   <mixins>
     <mixin>menu-xml@1.0.0</mixin>
+    <mixin>smarty-v2@1.0.1</mixin>
+    <mixin>entity-types-php@1.0.0</mixin>
   </mixins>
   <classloader>
     <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
+  <upgrader>CRM_DonorSearch_Upgrader</upgrader>
 </extension>
