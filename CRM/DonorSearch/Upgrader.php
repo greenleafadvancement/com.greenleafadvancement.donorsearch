@@ -141,10 +141,10 @@ class CRM_DonorSearch_Upgrader extends CRM_Extension_Upgrader_Base {
       }
       else {
         $isActive = ($action == 'enable') ? 1 : 0;
-        CRM_Core_BAO_Navigation::setIsActive(
-          CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', $name, 'id', 'name'),
-          $isActive
-        );
+        CRM_Core_BAO_Navigation::writeRecord([
+          'id' => CRM_Core_DAO::getFieldValue('CRM_Core_DAO_Navigation', $name, 'id', 'name'),
+          'is_active' => $isActive
+        ]);
       }
     }
 
