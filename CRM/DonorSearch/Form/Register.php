@@ -120,7 +120,7 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
    */
   public function postProcess() {
     $values = $this->exportValues();
-    $apiKey = CRM_Utils_Array::value('api_key', $values);
+    $apiKey = $values['api_key'] ?? NULL;
     if (empty($apiKey)) {
       $searchParams = array(
         'user' => $values['user'],
