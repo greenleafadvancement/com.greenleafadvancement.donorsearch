@@ -124,7 +124,7 @@ class CRM_DonorSearch_Upgrader extends CRM_Extension_Upgrader_Base {
    * disable/enable/delete DonorSearch links
    *
    * @param string $action
-   * @throws \CiviCRM_API3_Exception
+   * @throws \CRM_Core_Exception
    */
   public static function changeNavigation($action) {
     $names = array('ds_register_api', 'ds_new');
