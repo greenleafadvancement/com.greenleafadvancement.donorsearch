@@ -86,14 +86,14 @@ function civicrm_api3_donor_search_get($params) {
  *   API result array
  */
 function civicrm_api3_donor_search_delete($params) {
-  $ds = civicrm_api3('DonorSearch', 'getsingle', array('id' => $params['id']));
+  $ds = civicrm_api3('DonorSearch', 'getsingle', ['id' => $params['id']]);
   $result = _civicrm_api3_basic_delete(_civicrm_api3_get_BAO(__FUNCTION__), $params);
 
   // Cascade delete to the custom data
-  $tableName = civicrm_api3('CustomGroup', 'getvalue', array(
+  $tableName = civicrm_api3('CustomGroup', 'getvalue', [
     'return' => "table_name",
     'name' => "DS_details",
-  ));
+  ]);
   $sql = "DELETE FROM {$tableName} WHERE entity_id = {$ds['contact_id']}";
   CRM_Core_DAO::executeQuery($sql);
   return $result;

@@ -36,16 +36,16 @@ function donorsearch_civicrm_enable() {
  * disable/enable/delete DonorSearch links
  */
 function changeDSNavigation($action) {
-  $names = array('ds_register_api', 'ds_view', 'ds_new');
+  $names = ['ds_register_api', 'ds_view', 'ds_new'];
 
   foreach ($names as $name) {
     if ($name == 'delete') {
-      $result = civicrm_api3('Navigation', 'get', array(
+      $result = civicrm_api3('Navigation', 'get', [
         'return' => "id",
         'name' => $name,
-      ));
+      ]);
       if (!empty($result['id'])) {
-        civicrm_api3('Navigation', 'delete', array('id' => $result['id']));
+        civicrm_api3('Navigation', 'delete', ['id' => $result['id']]);
       }
     }
     else {
@@ -81,54 +81,54 @@ function donorsearch_civicrm_pageRun(&$page) {
   if ($page->getVar('_name') == 'CRM_Contact_Page_View_CustomData') {
     $contactId = $page->getVar('_contactId');
     $groupId = $page->getVar('_groupId');
-    $donorSearchGroupId = civicrm_api3('CustomGroup', 'getvalue', array(
+    $donorSearchGroupId = civicrm_api3('CustomGroup', 'getvalue', [
       'return' => "id",
       'name' => "DS_details",
-    ));
+    ]);
     if ($groupId != $donorSearchGroupId) {
       return;
     }
-    $result = civicrm_api3('DonorSearch', 'get', array(
+    $result = civicrm_api3('DonorSearch', 'get', [
       'contact_id' => $contactId,
       'sequential' => 1,
-      'options' => array('sort' => 'id DESC'),
-    ));
+      'options' => ['sort' => 'id DESC'],
+    ]);
     $count = $result['count'];
-    CRM_Core_Region::instance('page-header')->add(array(
+    CRM_Core_Region::instance('page-header')->add([
       'markup' => '
             <p>See the <a target="_blank" href="https://greenleafadvancement.github.io/com.greenleafadvancement.donorsearch">DonorSearch CiviCRM documentation</a> for details.</p>
         ',
-    ));
+    ]);
     if ($count) {
       $currentSearch = $result['values'][0]['id'];
-      CRM_Core_Region::instance('page-header')->add(array(
+      CRM_Core_Region::instance('page-header')->add([
         'markup' => '
           <a class="no-popup button" target="_blank" href="' . CRM_Utils_System::url('civicrm/view/ds-profile', "cid=" . $contactId) . '">
-            <span>' . ts('View DonorSearch Profile', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
+            <span>' . ts('View DonorSearch Profile', ['domain' => 'com.greenleafadvancement.donorsearch']) . '</span>
           </a>
         ',
-      ));
-      CRM_Core_Region::instance('page-header')->add(array(
+      ]);
+      CRM_Core_Region::instance('page-header')->add([
         'markup' => '
-        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/update-record', array(
+        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/update-record', [
           'reset' => 1,
-          'id' => $currentSearch)) . '">
-          <span>' . ts('Update DonorSearch Profile', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
+          'id' => $currentSearch]) . '">
+          <span>' . ts('Update DonorSearch Profile', ['domain' => 'com.greenleafadvancement.donorsearch']) . '</span>
         </a>
         <div class="spacer"></div>
       ',
-      ));
+      ]);
     } else {
-      CRM_Core_Region::instance('page-header')->add(array(
+      CRM_Core_Region::instance('page-header')->add([
         'markup' => '
-        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', array(
+        <a class="no-popup button" href="' . CRM_Utils_System::url('civicrm/ds/open-search', [
           'reset' => 1,
-          'cid'   => $contactId)) . '">
-          <span>' . ts('New DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')) . '</span>
+          'cid'   => $contactId]) . '">
+          <span>' . ts('New DonorSearch', ['domain' => 'com.greenleafadvancement.donorsearch']) . '</span>
         </a>
         <div class="spacer"></div>
 ',
-      ));
+      ]);
     }
   }
 }
@@ -153,33 +153,33 @@ function donorsearch_civicrm_tabset($link, &$allTabs, $context) {
 function donorSearch_civicrm_summaryActions(&$menu, $contactId) {
   // show action link 'View DonorSearch Profile' if user have 'access DonorSearch' permission
   if (CRM_Core_Permission::check('access DonorSearch')) {
-    $count = civicrm_api3('DonorSearch', 'getcount', array('contact_id' => $contactId));
+    $count = civicrm_api3('DonorSearch', 'getcount', ['contact_id' => $contactId]);
     if ($count) {
-      $menu += array(
-        'view-ds-profile' => array(
-          'title' => ts('DonorSearch Profile', array('domain' => 'com.greenleafadvancement.donorsearch')),
+      $menu += [
+        'view-ds-profile' => [
+          'title' => ts('DonorSearch Profile', ['domain' => 'com.greenleafadvancement.donorsearch']),
           'ref' => 'ds-profile',
           'key' => 'view-ds-profile',
           'href' => CRM_Utils_System::url('civicrm/view/ds-profile', 'reset=1'),
           'weight' => 100,
           'class' => 'no-popup',
           'extra' => ' target="_blank"',
-          'permissions' => array('access DonorSearch'),
-        ),
-      );
+          'permissions' => ['access DonorSearch'],
+        ],
+      ];
     }
     else {
-      $menu += array(
-        'add-ds-profile' => array(
-          'title' => ts('New DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')),
+      $menu += [
+        'add-ds-profile' => [
+          'title' => ts('New DonorSearch', ['domain' => 'com.greenleafadvancement.donorsearch']),
           'ref' => 'ds-profile',
           'key' => 'add-ds-profile',
-          'href' => CRM_Utils_System::url('civicrm/ds/open-search', array('reset' => 1, 'cid' => $contactId)),
+          'href' => CRM_Utils_System::url('civicrm/ds/open-search', ['reset' => 1, 'cid' => $contactId]),
           'weight' => 100,
           'class' => 'no-popup',
-          'permissions' => array('access DonorSearch'),
-        ),
-      );
+          'permissions' => ['access DonorSearch'],
+        ],
+      ];
     }
   }
 }
@@ -188,11 +188,11 @@ function donorSearch_civicrm_summaryActions(&$menu, $contactId) {
  * Implements hook_civicrm_entityTypes().
  */
 function donorsearch_civicrm_entityTypes(&$entityTypes) {
-  $entityTypes[] = array(
+  $entityTypes[] = [
     'name' => 'DonorSearch',
     'class' => 'CRM_DonorSearch_DAO_SavedSearch',
     'table' => 'civicrm_ds_saved_search',
-  );
+  ];
 }
 
 /**
@@ -214,7 +214,7 @@ function donorsearch_civicrm_check(&$messages) {
     $apiKeyUrl = CRM_Utils_System::url('civicrm/ds/register', 'reset=1');
     $messages[] = new CRM_Utils_Check_Message(
       'donorsearch_noapikey',
-      ts("The DonorSearch extension is enabled, but the DonorSearch API key is missing.  Navigate to Administeer » System Settings » <a href='%1'>Register DonorSearch API Key</a> to register a key.", array(1 => $apiKeyUrl)),
+      ts("The DonorSearch extension is enabled, but the DonorSearch API key is missing.  Navigate to Administeer » System Settings » <a href='%1'>Register DonorSearch API Key</a> to register a key.", [1 => $apiKeyUrl]),
       ts('No DonorSearch API Key'),
       \Psr\Log\LogLevel::WARNING,
       'fa-dollar'

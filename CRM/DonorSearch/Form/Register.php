@@ -58,7 +58,7 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
    * @return array
    */
   public function setDefaultValues() {
-    $defaults = array('api_key' => $this->_apiKey);
+    $defaults = ['api_key' => $this->_apiKey];
     return $defaults;
   }
 
@@ -69,19 +69,19 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
     $collapsible = empty($this->_apiKey) ? FALSE : TRUE;
     $this->assign('collapsible', $collapsible);
 
-    $this->add('text', 'user', ts('Username'), array('class' => 'huge'));
-    $this->add('password', 'pass', ts('Password'), array('class' => 'huge'));
-    $this->add('password', 'api_key', ts('API Key'), array('class' => 'huge'));
+    $this->add('text', 'user', ts('Username'), ['class' => 'huge']);
+    $this->add('password', 'pass', ts('Password'), ['class' => 'huge']);
+    $this->add('password', 'api_key', ts('API Key'), ['class' => 'huge']);
 
-    $this->addFormRule(array('CRM_DonorSearch_Form_Register', 'formRule'), $this);
+    $this->addFormRule(['CRM_DonorSearch_Form_Register', 'formRule'], $this);
 
-    $this->addButtons(array(
-      array(
+    $this->addButtons([
+      [
         'type' => 'submit',
         'name' => ts('Submit'),
         'isDefault' => TRUE,
-      ),
-    ));
+      ],
+    ]);
 
     parent::buildQuickForm();
   }
@@ -99,15 +99,15 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
    *   true if no errors, else array of errors
    */
   public static function formRule($fields, $files, $self) {
-    $errors = array();
+    $errors = [];
     if (empty($fields['api_key'])) {
-      $params = array(
+      $params = [
         'user' => 'Username',
         'pass' => 'Password',
-      );
+      ];
       foreach ($params as $name => $label) {
         if (empty($fields[$name])) {
-          $errors[$name] = ts("Please enter %1", array(1 => $label));
+          $errors[$name] = ts("Please enter %1", [1 => $label]);
         }
       }
     }
@@ -122,10 +122,10 @@ class CRM_DonorSearch_Form_Register extends CRM_Core_Form {
     $values = $this->exportValues();
     $apiKey = CRM_Utils_Array::value('api_key', $values);
     if (empty($apiKey)) {
-      $searchParams = array(
+      $searchParams = [
         'user' => $values['user'],
         'pass' => $values['pass'],
-      );
+      ];
 
       list($isError, $response) = CRM_DonorSearch_API::singleton($searchParams)->getKey();
 

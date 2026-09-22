@@ -89,7 +89,7 @@ class CRM_DonorSearch_Util {
     // corresponding custom field that represent a DS attribute
     $responseToFieldMap = CRM_DonorSearch_FieldInfo::getResponseToCustomFieldNameMap();
 
-    $params = array('id' => $contactID);
+    $params = ['id' => $contactID];
     // set value against its desired custom field that represent a DS attribute
     foreach ($response as $key => $value) {
       // as per the documentation there are few attributes which are optional and can be ignored
@@ -111,18 +111,18 @@ class CRM_DonorSearch_Util {
   public static function viewProfile() {
     $self = NULL;
     $cid = CRM_Utils_Request::retrieve('cid', 'Positive', $self, TRUE);
-    $profileLink = civicrm_api3('Contact', 'getvalue', array(
+    $profileLink = civicrm_api3('Contact', 'getvalue', [
       'id' => $cid,
       'return' => CRM_DonorSearch_FieldInfo::getResponseToCustomFieldNameMap('ProfileLink'),
-    ));
+    ]);
 
     if ($profileLink) {
       CRM_Utils_System::redirect($profileLink);
     }
     else {
-      CRM_Core_Error::statusBounce(E::ts('There is no DonorSearch profile for contact id %1', array(
+      CRM_Core_Error::statusBounce(E::ts('There is no DonorSearch profile for contact id %1', [
         '1' => $cid,
-      )));
+      ]));
     }
   }
 
@@ -130,10 +130,10 @@ class CRM_DonorSearch_Util {
    * Get DonorSearch custom group view link
    */
   public static function getDonorSearchDetailsLink($contactID) {
-    $customGroupID = civicrm_api3('customGroup', 'getvalue', array(
+    $customGroupID = civicrm_api3('customGroup', 'getvalue', [
       'name' => 'DS_details',
       'return' => 'id',
-    ));
+    ]);
     return CRM_Utils_System::url('civicrm/contact/view', sprintf('reset=1&gid=%d&cid=%d&selectedChild=custom_%d', $customGroupID, $contactID, $customGroupID));
   }
 
@@ -146,7 +146,7 @@ class CRM_DonorSearch_Util {
       E::ts('Missing key'),
       'error'
     );
-    CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm/ds/register', array('reset' => 1)));
+    CRM_Utils_System::redirect(CRM_Utils_System::url('civicrm/ds/register', ['reset' => 1]));
   }
 
   /**

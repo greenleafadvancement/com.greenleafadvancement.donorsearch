@@ -86,36 +86,36 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
    */
   static function &fields() {
     if (!isset(Civi::$statics[__CLASS__]['fields'])) {
-      Civi::$statics[__CLASS__]['fields'] = array(
-        'id' => array(
+      Civi::$statics[__CLASS__]['fields'] = [
+        'id' => [
           'name' => 'id',
           'type' => CRM_Utils_Type::T_INT,
           'description' => 'DonorSearch saved search ID',
           'required' => true,
-        ) ,
-        'contact_id' => array(
+        ] ,
+        'contact_id' => [
           'name' => 'contact_id',
           'type' => CRM_Utils_Type::T_INT,
           'title' => ts('Contact') ,
           'description' => 'Foreign key to the contact for this record.',
           'required' => true,
           'FKClassName' => 'CRM_Contact_DAO_Contact',
-        ) ,
-        'creator_id' => array(
+        ] ,
+        'creator_id' => [
           'name' => 'creator_id',
           'type' => CRM_Utils_Type::T_INT,
           'title' => ts('Creator') ,
           'description' => 'Foreign key to the contact who created this record.',
           'required' => true,
           'FKClassName' => 'CRM_Contact_DAO_Contact',
-        ) ,
-        'search_criteria' => array(
+        ] ,
+        'search_criteria' => [
           'name' => 'search_criteria',
           'type' => CRM_Utils_Type::T_LONGTEXT,
           'title' => ts('Search Criteria') ,
           'description' => 'Serialized DonorSearch data',
-        ) ,
-      );
+        ] ,
+      ];
       CRM_Core_DAO_AllCoreTables::invoke(__CLASS__, 'fields_callback', Civi::$statics[__CLASS__]['fields']);
     }
     return Civi::$statics[__CLASS__]['fields'];
@@ -156,7 +156,7 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
    * @return array
    */
   static function &import($prefix = false) {
-    $r = CRM_Core_DAO_AllCoreTables::getImports(__CLASS__, 'ds_saved_search', $prefix, array());
+    $r = CRM_Core_DAO_AllCoreTables::getImports(__CLASS__, 'ds_saved_search', $prefix, []);
     return $r;
   }
   /**
@@ -167,7 +167,7 @@ class CRM_DonorSearch_DAO_SavedSearch extends CRM_Core_DAO {
    * @return array
    */
   static function &export($prefix = false) {
-    $r = CRM_Core_DAO_AllCoreTables::getExports(__CLASS__, 'ds_saved_search', $prefix, array());
+    $r = CRM_Core_DAO_AllCoreTables::getExports(__CLASS__, 'ds_saved_search', $prefix, []);
     return $r;
   }
 }

@@ -12,49 +12,49 @@ class CRM_DonorSearch_Upgrader extends CRM_Extension_Upgrader_Base {
    * Example: Run an external SQL script when the module is installed.
    */
   public function install() {
-    civicrm_api3('Navigation', 'create', array(
-      'label' => ts('Register DonorSearch API Key', array('domain' => 'com.greenleafadvancement.donorsearch')),
+    civicrm_api3('Navigation', 'create', [
+      'label' => ts('Register DonorSearch API Key', ['domain' => 'com.greenleafadvancement.donorsearch']),
       'name' => 'ds_register_api',
       'url' => 'civicrm/ds/register?reset=1',
       'domain_id' => CRM_Core_Config::domainID(),
       'is_active' => 1,
-      'parent_id' => civicrm_api3('Navigation', 'getvalue', array(
+      'parent_id' => civicrm_api3('Navigation', 'getvalue', [
         'return' => "id",
         'name' => "System Settings",
-      )),
+      ]),
       'permission' => 'administer CiviCRM',
-    ));
+    ]);
 
-    civicrm_api3('Navigation', 'create', array(
-      'id' => civicrm_api3('Navigation', 'getvalue', array(
+    civicrm_api3('Navigation', 'create', [
+      'id' => civicrm_api3('Navigation', 'getvalue', [
         'return' => "id",
         'name' => "Find and Merge Duplicate Contacts",
-      )),
+      ]),
       'has_separator' => 1,
-    ));
-    $params = array(
-      array(
-        'label' => ts('New DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')),
+    ]);
+    $params = [
+      [
+        'label' => ts('New DonorSearch', ['domain' => 'com.greenleafadvancement.donorsearch']),
         'name' => 'ds_new',
         'url' => 'civicrm/ds/open-search?reset=1',
-      ),
-    );
+      ],
+    ];
     foreach ($params as $param) {
       civicrm_api3('Navigation', 'create', array_merge($param,
-        array(
+        [
           'domain_id' => CRM_Core_Config::domainID(),
           'is_active' => 1,
-          'parent_id' => civicrm_api3('Navigation', 'getvalue', array(
+          'parent_id' => civicrm_api3('Navigation', 'getvalue', [
             'return' => "id",
             'name' => "Contacts",
-          )),
+          ]),
           'permission' => 'access DonorSearch',
-        )
+        ]
       ));
     }
 
-    $customGroup = civicrm_api3('custom_group', 'create', array(
-      'title' => ts('DonorSearch', array('domain' => 'com.greenleafadvancement.donorsearch')),
+    $customGroup = civicrm_api3('custom_group', 'create', [
+      'title' => ts('DonorSearch', ['domain' => 'com.greenleafadvancement.donorsearch']),
       'name' => 'DS_details',
       'extends' => 'Contact',
       'domain_id' => CRM_Core_Config::domainID(),
@@ -62,14 +62,14 @@ class CRM_DonorSearch_Upgrader extends CRM_Extension_Upgrader_Base {
       'is_active' => 1,
       'collapse_adv_display' => 0,
       'collapse_display' => 0,
-    ));
+    ]);
 
     foreach (CRM_DonorSearch_FieldInfo::getAttributes() as $param) {
-      civicrm_api3('custom_field', 'create', array_merge($param, array(
+      civicrm_api3('custom_field', 'create', array_merge($param, [
         'custom_group_id' => $customGroup['id'],
         'is_searchable' => 1,
         'is_view' => 1,
-      )));
+      ]));
     }
     CRM_DonorSearch_FieldInfo::getResponseToCustomFieldNameMap();
   }
@@ -80,23 +80,23 @@ class CRM_DonorSearch_Upgrader extends CRM_Extension_Upgrader_Base {
   public function uninstall() {
     self::changeNavigation('delete');
 
-    $result = civicrm_api3('custom_group', 'get', array(
+    $result = civicrm_api3('custom_group', 'get', [
       'name' => 'DS_details',
       'return' => 'id',
-    ));
+    ]);
     if (!empty($result['id'])) {
       $customGroupID = $result['id'];
       foreach (CRM_DonorSearch_FieldInfo::getAttributes() as $param) {
-        $customFieldID = civicrm_api3('custom_field', 'getvalue', array(
+        $customFieldID = civicrm_api3('custom_field', 'getvalue', [
           'custom_group_id' => $customGroupID,
           'name' => $param['name'],
           'return' => 'id',
-        ));
+        ]);
         if (!empty($customFieldID)) {
-          civicrm_api3('custom_field', 'delete', array('id' => $customFieldID));
+          civicrm_api3('custom_field', 'delete', ['id' => $customFieldID]);
         }
       }
-      civicrm_api3('custom_group', 'delete', array('id' => $customGroupID));
+      civicrm_api3('custom_group', 'delete', ['id' => $customGroupID]);
     }
 
     // delete 'DonorSearch' cache
@@ -127,16 +127,16 @@ class CRM_DonorSearch_Upgrader extends CRM_Extension_Upgrader_Base {
    * @throws \CiviCRM_API3_Exception
    */
   public static function changeNavigation($action) {
-    $names = array('ds_register_api', 'ds_new');
+    $names = ['ds_register_api', 'ds_new'];
 
     foreach ($names as $name) {
       if ($action == 'delete') {
-        $result = civicrm_api3('Navigation', 'get', array(
+        $result = civicrm_api3('Navigation', 'get', [
           'return' => "id",
           'name' => $name,
-        ));
+        ]);
         if (!empty($result['id'])) {
-          civicrm_api3('Navigation', 'delete', array('id' => $result['id']));
+          civicrm_api3('Navigation', 'delete', ['id' => $result['id']]);
         }
       }
       else {

@@ -82,11 +82,11 @@ class CRM_DonorSearch_API {
    *    If TRUE, add a current timestamp in a 'submit_time' array element.
    */
   public function get($doTimestamp = FALSE) {
-    $params = array(
+    $params = [
       'Store' => 1,
       'key' => $this->_searchParams['key'],
       'clientID' => $this->_searchParams['clientID'],
-    );
+    ];
     return $this->sendRequest($params, $doTimestamp);
   }
 
@@ -137,10 +137,10 @@ class CRM_DonorSearch_API {
     if ($doTimestamp) {
       $response['submit_time'] = CRM_Utils_Date::currentDBDate();
     }
-    return array(
+    return [
       self::throwDSError($responseJSON),
       $response,
-    );
+    ];
   }
 
   /**
@@ -149,11 +149,11 @@ class CRM_DonorSearch_API {
    *
    * @param array $params Parameters to be passed to the DonorSearch API.
    */
-  private function setDefaultParams(&$params = array()) {
-    $defaults = array(
+  private function setDefaultParams(&$params = []) {
+    $defaults = [
       // Specify that ProfileLink should contain the URL for the "new" profile format.
       'ProfileVersion' => 2,
-    );
+    ];
     $params += $defaults;
   }
 
