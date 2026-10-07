@@ -1,7 +1,6 @@
 <?php
 
 require_once 'donorsearch.civix.php';
-require_once 'CRM/DonorSearch/FieldInfo.php';
 
 use CRM_DonorSearch_ExtensionUtil as E;
 
